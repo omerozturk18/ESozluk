@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Abstract
 {
-    public interface ICategoryDal:IRepository<Category>
+    public interface IContentDal:IRepository<Content>
     {
     }
 }
