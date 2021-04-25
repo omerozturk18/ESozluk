@@ -28,5 +28,18 @@ namespace BusinessLibrary.Concrete
             }
             _genericRepository.Add(category);
         }
+        public void DeleteCategory(Category category)
+        {
+            _genericRepository.Delete(category);
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            _genericRepository.Update(category);
+        }
+        public List<Category> ListCategory(Category category)
+        {
+            return _genericRepository.List(e => e.CategoryId == category.CategoryId);
+        }
     }
 }
