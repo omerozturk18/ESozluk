@@ -11,8 +11,8 @@ namespace DataAccessLibrary.Concrete.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        Context _context;
-        DbSet<T> _object;
+        private readonly Context _context;
+        private readonly DbSet<T> _object;
 
         public GenericRepository(Context context)
         {

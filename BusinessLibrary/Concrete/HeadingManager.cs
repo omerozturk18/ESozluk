@@ -1,24 +1,22 @@
-﻿using DataAccessLibrary.Concrete.Repositories;
+﻿using BusinessLibrary.Abstract;
+using DataAccessLibrary.Abstract;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLibrary.Concrete
 {
-    public class HeadingManager
+    public class HeadingManager:IHeadingService
     {
-        GenericRepository<Heading> _genericRepository;
+        IHeadingDal _headingDal;
 
-        public HeadingManager(GenericRepository<Heading> genericRepository)
+        public HeadingManager(IHeadingDal headingDal)
         {
-            _genericRepository = genericRepository;
+            _headingDal = headingDal;
         }
+
         public List<Heading> GetAll()
         {
-            return _genericRepository.GetAll();
+            return _headingDal.GetAll();
         }
         public void AddHeading(Heading heading)
         {
@@ -26,20 +24,20 @@ namespace BusinessLibrary.Concrete
             {
                 //hata mesajı
             }
-            _genericRepository.Add(heading);
+            _headingDal.Add(heading);
         }
         public void DeleteHeading(Heading heading)
         {
-            _genericRepository.Delete(heading);
+            _headingDal.Delete(heading);
         }
 
         public void UpdateHeading(Heading heading)
         {
-            _genericRepository.Update(heading);
+            _headingDal.Update(heading);
         }
         public List<Heading> ListHeading(Heading heading)
         {
-            return _genericRepository.List(e => e.HeadingId == heading.HeadingId);
+            return _headingDal.List(e => e.HeadingId == heading.HeadingId);
         }
     }
 }

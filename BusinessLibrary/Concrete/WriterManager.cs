@@ -1,4 +1,6 @@
-﻿using DataAccessLibrary.Concrete.Repositories;
+﻿using BusinessLibrary.Abstract;
+using DataAccessLibrary.Abstract;
+using DataAccessLibrary.Concrete.Repositories;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,17 +10,18 @@ using System.Threading.Tasks;
 
 namespace BusinessLibrary.Concrete
 {
-    public class WriterManager
+    public class WriterManager:IWriterService
     {
-        GenericRepository<Writer> _genericRepository;
+        IWriterDal _writerDal;
 
-        public WriterManager(GenericRepository<Writer> genericRepository)
+        public WriterManager(IWriterDal writerDal)
         {
-            _genericRepository = genericRepository;
+            _writerDal = writerDal;
         }
+
         public List<Writer> GetAll()
         {
-            return _genericRepository.GetAll();
+            return _writerDal.GetAll();
         }
         public void AddWriter(Writer writer)
         {
@@ -26,20 +29,20 @@ namespace BusinessLibrary.Concrete
             {
                 //hata mesajı
             }
-            _genericRepository.Add(writer);
+            _writerDal.Add(writer);
         }
         public void DeleteWriter(Writer writer)
         {
-            _genericRepository.Delete(writer);
+            _writerDal.Delete(writer);
         }
 
         public void UpdateWriter(Writer writer)
         {
-            _genericRepository.Update(writer);
+            _writerDal.Update(writer);
         }
         public List<Writer> ListWriter(Writer writer)
         {
-            return _genericRepository.List(e => e.WriterId == writer.WriterId);
+            return _writerDal.List(e => e.WriterId == writer.WriterId);
         }
     }
 }

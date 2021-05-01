@@ -1,24 +1,22 @@
-﻿using DataAccessLibrary.Concrete.Repositories;
+﻿using BusinessLibrary.Abstract;
+using DataAccessLibrary.Abstract;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLibrary.Concrete
 {
-    public class ContentManager
+    public class ContentManager:IContentService
     {
-        GenericRepository<Content> _genericRepository;
+        IContentDal _contentDal;
 
-        public ContentManager(GenericRepository<Content> genericRepository)
+        public ContentManager(IContentDal contentDal)
         {
-            _genericRepository = genericRepository;
+            _contentDal = contentDal;
         }
+
         public List<Content> GetAll()
         {
-            return _genericRepository.GetAll();
+            return _contentDal.GetAll();
         }
         public void AddContent(Content content)
         {
@@ -26,20 +24,20 @@ namespace BusinessLibrary.Concrete
             {
                 //hata mesajı
             }
-            _genericRepository.Add(content);
+            _contentDal.Add(content);
         }
         public void DeleteContent(Content content)
         {
-            _genericRepository.Delete(content);
+            _contentDal.Delete(content);
         }
 
         public void UpdateContent(Content content)
         {
-            _genericRepository.Update(content);
+            _contentDal.Update(content);
         }
         public List<Content> ListContent(Content content)
         {
-            return _genericRepository.List(e => e.ContentId == content.ContentId);
+            return _contentDal.List(e => e.ContentId == content.ContentId);
         }
     }
 }

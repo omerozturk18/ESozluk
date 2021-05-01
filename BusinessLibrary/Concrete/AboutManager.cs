@@ -1,4 +1,6 @@
-﻿using DataAccessLibrary.Concrete.Repositories;
+﻿using BusinessLibrary.Abstract;
+using DataAccessLibrary.Abstract;
+using DataAccessLibrary.Concrete.Repositories;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,17 +10,18 @@ using System.Threading.Tasks;
 
 namespace BusinessLibrary.Concrete
 {
-    public class AboutManager
+    public class AboutManager:IAboutService
     {
-        GenericRepository<About> _genericRepository;
+        IAboutDal _aboutDal;
 
-        public AboutManager(GenericRepository<About> genericRepository)
+        public AboutManager(IAboutDal aboutDal)
         {
-            _genericRepository = genericRepository;
+            _aboutDal = aboutDal;
         }
+
         public List<About> GetAll()
         {
-            return _genericRepository.GetAll();
+            return _aboutDal.GetAll();
         }
         public void AddAbout(About about)
         {
@@ -26,20 +29,20 @@ namespace BusinessLibrary.Concrete
             {
                 //hata mesajı
             }
-            _genericRepository.Add(about);
+            _aboutDal.Add(about);
         }
         public void DeleteAbout(About about)
         {
-            _genericRepository.Delete(about);
+            _aboutDal.Delete(about);
         }
 
         public void UpdateAbout(About about)
         {
-            _genericRepository.Update(about);
+            _aboutDal.Update(about);
         }
         public List<About> ListAbout(About about)
         {
-           return _genericRepository.List(e=>e.AboutId==about.AboutId);
+           return _aboutDal.List(e=>e.AboutId==about.AboutId);
         }
     }
 }

@@ -1,24 +1,22 @@
-﻿using DataAccessLibrary.Concrete.Repositories;
+﻿using BusinessLibrary.Abstract;
+using DataAccessLibrary.Abstract;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLibrary.Concrete
 {
-    public class CategoryManager
+    public class CategoryManager:ICategoryService
     {
-        GenericRepository<Category> _genericRepository;
+        ICategoryDal _categoryDal;
 
-        public CategoryManager(GenericRepository<Category> genericRepository)
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            _genericRepository = genericRepository;
+            _categoryDal = categoryDal;
         }
+
         public List<Category> GetAll()
         {
-            return _genericRepository.GetAll();
+            return _categoryDal.GetAll();
         }
         public void AddCategory(Category category)
         {
@@ -26,20 +24,20 @@ namespace BusinessLibrary.Concrete
             {
                 //hata mesajı
             }
-            _genericRepository.Add(category);
+            _categoryDal.Add(category);
         }
         public void DeleteCategory(Category category)
         {
-            _genericRepository.Delete(category);
+            _categoryDal.Delete(category);
         }
 
         public void UpdateCategory(Category category)
         {
-            _genericRepository.Update(category);
+            _categoryDal.Update(category);
         }
         public List<Category> ListCategory(Category category)
         {
-            return _genericRepository.List(e => e.CategoryId == category.CategoryId);
+            return _categoryDal.List(e => e.CategoryId == category.CategoryId);
         }
     }
 }
