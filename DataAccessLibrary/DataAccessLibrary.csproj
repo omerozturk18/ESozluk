@@ -59,8 +59,13 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
-    <Compile Include="Concrete\Repositories\CategoryRepository.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
+    <Compile Include="Concrete\EntityFramework\EfAboutDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfContactDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfContentDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfHeadingDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfWriterDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EFCategoryDal.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +78,9 @@
       <Project>{2C193A47-F8C7-48B9-B7BE-3959E3F48141}</Project>
       <Name>EntityLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

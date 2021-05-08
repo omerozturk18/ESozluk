@@ -2,13 +2,15 @@
 using DataAccessLibrary.Abstract;
 using EntityLayer.Concrete;
 using System.Collections.Generic;
+using DataAccessLibrary.Concrete.EntityFramework;
 
 namespace BusinessLibrary.Concrete
 {
     public class CategoryManager:ICategoryService
     {
-        ICategoryDal _categoryDal;
+        private readonly ICategoryDal _categoryDal;
 
+   
         public CategoryManager(ICategoryDal categoryDal)
         {
             _categoryDal = categoryDal;
@@ -20,10 +22,7 @@ namespace BusinessLibrary.Concrete
         }
         public void AddCategory(Category category)
         {
-            if (category.CategoryName==""||category.CategoryName.Length<=3||category.CategoryDescription==""||category.CategoryName.Length>=51)
-            {
-                //hata mesajı
-            }
+
             _categoryDal.Add(category);
         }
         public void DeleteCategory(Category category)

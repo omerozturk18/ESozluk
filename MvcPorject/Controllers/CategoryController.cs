@@ -5,16 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BusinessLibrary.Concrete;
+using BusinessLibrary.ValidationRules;
+using DataAccessLibrary.Concrete.EntityFramework;
+using FluentValidation.Results;
 
 namespace MvcPorject.Controllers
 {
     public class CategoryController : Controller
     {
-        ICategoryService _categoryService;
-        public CategoryController(ICategoryService categoryService)
-        {
-            _categoryService = categoryService;
-        }
+       // private readonly ICategoryService _categoryService;
+        private CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
+
+        //public CategoryController(ICategoryService categoryService)
+        //{
+        //    _categoryService = categoryService;
+        //}
 
         // GET: Category
         public ActionResult Index()
@@ -24,7 +30,7 @@ namespace MvcPorject.Controllers
 
         public ActionResult GetCategoryList()
         {
-            return View(_categoryService.GetAll());
+            return View(_categoryManager.GetAll());
         }
 
         [HttpGet]
@@ -32,12 +38,25 @@ namespace MvcPorject.Controllers
         {
             return View();
         }
-
+  
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
-            _categoryService.AddCategory(category);
-            return RedirectToAction("GetCategoryList");
+            CategoryValidator categoryValidator = new CategoryValidator();
+            ValidationResult result = categoryValidator.Validate(category);
+            if (result.IsValid)
+            {
+                _categoryManager.AddCategory(category);
+                return RedirectToAction("GetCategoryList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName,item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }
