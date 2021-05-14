@@ -1,6 +1,10 @@
-﻿namespace DataAccessLibrary.Concrete.EntityFramework
+﻿using DataAccessLibrary.Abstract;
+using DataAccessLibrary.Concrete.Repositories;
+using EntityLayer.Concrete;
+
+namespace DataAccessLibrary.Concrete.EntityFramework
 {
-    public class EfContactDal
+    public class EfContactDal:GenericRepository<Contact, Context>,IContactDal
     {
     }
 }

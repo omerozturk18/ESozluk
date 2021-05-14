@@ -15,7 +15,7 @@ namespace MvcPorject.Controllers
     public class CategoryController : Controller
     {
        // private readonly ICategoryService _categoryService;
-        private CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
+        private readonly CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
 
         //public CategoryController(ICategoryService categoryService)
         //{
