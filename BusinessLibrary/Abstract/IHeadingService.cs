@@ -15,6 +15,7 @@ namespace BusinessLibrary.Abstract
         void UpdateHeading(Heading heading);
          List<Heading> ListHeading(Heading heading);
          Heading GetById(int id);
-
+         List<Heading> GetByWriter(int id);
+         List<Heading> GetByCategory(int id);
     }
 }

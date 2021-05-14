@@ -22,9 +22,16 @@ namespace BusinessLibrary.ValidationRules
             RuleFor(x => x.WriterMail).EmailAddress().WithMessage("Geçerli Mail Değil");
 
         }
-        private bool IsAboutValid(string arg)
+        private static bool IsAboutValid(string arg)
         {
-            return arg.Contains("a");
+            try
+            {
+                return arg.Contains("a");
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

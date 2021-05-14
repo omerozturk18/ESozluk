@@ -25,10 +25,6 @@ namespace BusinessLibrary.Concrete
         }
         public void AddWriter(Writer writer)
         {
-            if (writer.WriterName=="" || writer.WriterName.Length<=3 || writer.WriterMail=="" || writer.WriterName.Length>=51)
-            {
-                //hata mesajı
-            }
             _writerDal.Add(writer);
         }
         public void DeleteWriter(Writer writer)

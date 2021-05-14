@@ -44,5 +44,15 @@ namespace BusinessLibrary.Concrete
         {
             return _headingDal.Get(c => c.HeadingId == id);
         }
+
+        public List<Heading> GetByWriter(int id)
+        {
+            return _headingDal.List(w => w.WriterId == id);
+        }
+
+        public List<Heading> GetByCategory(int id)
+        {
+            return _headingDal.List(c => c.CategoryId == id);
+        }
     }
 }

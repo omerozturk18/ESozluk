@@ -135,6 +135,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\HeadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
@@ -2279,6 +2280,12 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Writer\Index.cshtml" />
     <Content Include="Views\Writer\AddWriter.cshtml" />
+    <Content Include="Views\Writer\UpdateWriter.cshtml" />
+    <Content Include="Views\Heading\Index.cshtml" />
+    <Content Include="Views\Heading\GetByWriter.cshtml" />
+    <Content Include="Views\Heading\GetByCategory.cshtml" />
+    <Content Include="Views\Heading\AddHeading.cshtml" />
+    <Content Include="Views\Heading\UpdateHeading.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

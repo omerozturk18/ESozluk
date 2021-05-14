@@ -48,11 +48,14 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
+                                        <a href="/Heading/GetByWriter/@item.WriterId" class="btn btn-sm bg-teal">
                                             <i class="fas fa-comments"></i> Yazar Başlıkları
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
+                                        <a href="/Writer/UpdateWriter/@item.WriterId" class="btn btn-sm btn-primary">
                                             <i class="fas fa-user"></i> Profili Düzenle
+                                        </a>
+                                        <a href="/Writer/DeleteWriter/@item.WriterId" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i> 
                                         </a>
                                     </div>
                                 </div>
@@ -60,6 +63,9 @@
                         </div>
                     }
                 </div>
+            </div>
+            <div class="card-footer">
+                <a href="/Writer/AddWriter" class="btn btn-info">Yeni Yazar Ekle</a>
             </div>
         </div>
         <!-- /.card -->

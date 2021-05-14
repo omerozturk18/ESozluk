@@ -1,0 +1,32 @@
+﻿
+@using EntityLayer.Concrete
+@model List<Heading>
+@{
+    ViewBag.Title = "GetByWriter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+<h3>Yazarın Başlıkları</h3>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık Adı</th>
+        <th>Başlık Tarihi</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.HeadingId</th>
+            <td>@item.HeadingName</td>
+            <td>@item.HeadingDate</td>
+            <td><a href="/Heading/DeleteHeading/@item.HeadingId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Heading/UpdateHeading/@item.HeadingId" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Heading/AddHeading" class="btn btn-info">Yeni Başlık Ekle</a>

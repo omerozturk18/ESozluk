@@ -43,5 +43,24 @@ namespace MvcPorject.Controllers
             }
             return View();
         }
+        public ActionResult DeleteWriter(int id)
+        {
+            var writerDelete = _writerManager.GetById(id);
+            _writerManager.DeleteWriter(writerDelete);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateWriter(int id)
+        {
+            var writerValue = _writerManager.GetById(id);
+            return View(writerValue);
+        }
+        [HttpPost]
+        public ActionResult UpdateWriter(Writer writer)
+        {
+            _writerManager.UpdateWriter(writer);
+            return RedirectToAction("Index");
+        }
     }
 }
