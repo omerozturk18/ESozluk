@@ -7,7 +7,7 @@ namespace BusinessLibrary.Concrete
 {
     public class HeadingManager:IHeadingService
     {
-        IHeadingDal _headingDal;
+        private readonly IHeadingDal _headingDal;
 
         public HeadingManager(IHeadingDal headingDal)
         {
@@ -38,6 +38,11 @@ namespace BusinessLibrary.Concrete
         public List<Heading> ListHeading(Heading heading)
         {
             return _headingDal.List(e => e.HeadingId == heading.HeadingId);
+        }
+
+        public Heading GetById(int id)
+        {
+            return _headingDal.Get(c => c.HeadingId == id);
         }
     }
 }

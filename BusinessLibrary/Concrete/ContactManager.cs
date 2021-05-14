@@ -7,7 +7,7 @@ namespace BusinessLibrary.Concrete
 {
     public class ContactManager:IContactService
     {
-        IContactDal _contactDal;
+        private readonly IContactDal _contactDal;
 
         public ContactManager(IContactDal contactDal)
         {
@@ -38,6 +38,11 @@ namespace BusinessLibrary.Concrete
         public List<Contact> ListContact(Contact contact)
         {
             return _contactDal.List(e => e.ContactId == contact.ContactId);
+        }
+
+        public Contact GetById(int id)
+        {
+            return _contactDal.Get(c => c.ContactId == id);
         }
     }
 }

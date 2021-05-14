@@ -7,7 +7,7 @@ namespace BusinessLibrary.Concrete
 {
     public class ContentManager:IContentService
     {
-        IContentDal _contentDal;
+        private readonly IContentDal _contentDal;
 
         public ContentManager(IContentDal contentDal)
         {
@@ -38,6 +38,11 @@ namespace BusinessLibrary.Concrete
         public List<Content> ListContent(Content content)
         {
             return _contentDal.List(e => e.ContentId == content.ContentId);
+        }
+
+        public Content GetById(int id)
+        {
+            return _contentDal.Get(c => c.ContentId == id);
         }
     }
 }

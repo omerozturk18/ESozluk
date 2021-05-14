@@ -14,7 +14,7 @@ namespace MvcPorject.Controllers
     public class AdminCategoryController : Controller
     {
         // private readonly ICategoryService _categoryService;
-        private CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
+        private readonly CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
 
         //public CategoryController(ICategoryService categoryService)
         //{
@@ -52,5 +52,24 @@ namespace MvcPorject.Controllers
             return View();
         }
 
+        public ActionResult DeleteCategory(int id)
+        {
+            var deleteCategory = _categoryManager.GetById(id);
+            _categoryManager.DeleteCategory(deleteCategory);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateCategory(int id)
+        {
+            var categoryValue = _categoryManager.GetById(id);
+            return View(categoryValue);
+        }
+        [HttpPost]
+        public ActionResult UpdateCategory(Category category)
+        {
+            _categoryManager.UpdateCategory(category);
+            return RedirectToAction("Index");
+        }
     }
 }

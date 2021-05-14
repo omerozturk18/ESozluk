@@ -14,5 +14,7 @@ namespace BusinessLibrary.Abstract
         void DeleteHeading(Heading heading);
         void UpdateHeading(Heading heading);
          List<Heading> ListHeading(Heading heading);
+         Heading GetById(int id);
+
     }
 }

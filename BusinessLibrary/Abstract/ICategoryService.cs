@@ -14,5 +14,6 @@ namespace BusinessLibrary.Abstract
         void DeleteCategory(Category category);
         void UpdateCategory(Category category);
         List<Category> ListCategory(Category category);
+        Category GetById(int id);
     }
 }

@@ -14,5 +14,7 @@ namespace BusinessLibrary.Abstract
         void DeleteContact(Contact contact);
         void UpdateContact(Contact contact);
          List<Contact> ListContact(Contact contact);
+         Contact GetById(int id);
+
     }
 }

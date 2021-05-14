@@ -12,7 +12,7 @@ namespace BusinessLibrary.Concrete
 {
     public class WriterManager:IWriterService
     {
-        IWriterDal _writerDal;
+        private readonly IWriterDal _writerDal;
 
         public WriterManager(IWriterDal writerDal)
         {
@@ -43,6 +43,11 @@ namespace BusinessLibrary.Concrete
         public List<Writer> ListWriter(Writer writer)
         {
             return _writerDal.List(e => e.WriterId == writer.WriterId);
+        }
+
+        public Writer GetById(int id)
+        {
+            return _writerDal.Get(c => c.WriterId == id);
         }
     }
 }

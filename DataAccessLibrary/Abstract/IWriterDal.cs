@@ -9,5 +9,6 @@ namespace DataAccessLibrary.Abstract
 {
     public interface IWriterDal:IRepository<Writer>
     {
+        int WriterFilterCount();
     }
 }

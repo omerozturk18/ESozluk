@@ -14,5 +14,7 @@ namespace BusinessLibrary.Abstract
         void DeleteWriter(Writer writer);
         void UpdateWriter(Writer writer);
          List<Writer> ListWriter(Writer writer);
+        Writer GetById(int id);
+
     }
 }

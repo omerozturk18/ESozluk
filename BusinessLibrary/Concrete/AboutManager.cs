@@ -12,7 +12,7 @@ namespace BusinessLibrary.Concrete
 {
     public class AboutManager:IAboutService
     {
-        IAboutDal _aboutDal;
+        private readonly IAboutDal _aboutDal;
 
         public AboutManager(IAboutDal aboutDal)
         {
@@ -43,6 +43,11 @@ namespace BusinessLibrary.Concrete
         public List<About> ListAbout(About about)
         {
            return _aboutDal.List(e=>e.AboutId==about.AboutId);
+        }
+
+        public About GetById(int id)
+        {
+            return _aboutDal.Get(c => c.AboutId == id);
         }
     }
 }

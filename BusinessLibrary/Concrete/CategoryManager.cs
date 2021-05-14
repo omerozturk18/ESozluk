@@ -38,5 +38,10 @@ namespace BusinessLibrary.Concrete
         {
             return _categoryDal.List(e => e.CategoryId == category.CategoryId);
         }
+
+        public Category GetById(int id)
+        {
+            return _categoryDal.Get(c => c.CategoryId == id);
+        }
     }
 }

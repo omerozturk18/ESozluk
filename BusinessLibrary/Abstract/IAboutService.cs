@@ -14,5 +14,7 @@ namespace BusinessLibrary.Abstract
         void DeleteAbout(About about);
         void UpdateAbout(About about);
          List<About> ListAbout(About about);
+         About GetById(int id);
+
     }
 }

@@ -9,5 +9,7 @@ namespace DataAccessLibrary.Abstract
 {
     public interface ICategoryDal:IRepository<Category>
     {
+        int NumberOfCategory();
+        int TrueOrFalseDifferenceOfCategory();
     }
 }
