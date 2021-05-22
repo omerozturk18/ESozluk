@@ -14,7 +14,7 @@ namespace DataAccessLibrary.Concrete.Repositories
         where TEntity : class, new()
         where TContext : DbContext, new()
     {
-
+        TContext contextList = new TContext();
         public void Add(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -37,21 +37,16 @@ namespace DataAccessLibrary.Concrete.Repositories
 
         public List<TEntity> GetAll()
         {
-            using (TContext context = new TContext())
-            {
-                return context.Set<TEntity>().ToList();
-            }
+            return contextList.Set<TEntity>().ToList();
         }
 
 
         public List<TEntity> List(Expression<Func<TEntity, bool>> filter)
         {
-            using (TContext context = new TContext())
-            {
+
                 return filter == null
-                    ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
-            }
+                    ? contextList.Set<TEntity>().ToList()
+                    : contextList.Set<TEntity>().Where(filter).ToList();
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)

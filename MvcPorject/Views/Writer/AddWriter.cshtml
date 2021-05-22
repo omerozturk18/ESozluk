@@ -8,33 +8,37 @@
 <br />
 @using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
 {
-    <div class="form-group">
-        @Html.Label("Yazar Adı")
-        @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterName)
-        <br />
-        @Html.Label("Yazar Soyadı")
-        @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x=>x.WriterSurName)
-        <br />
-        @Html.Label("Yazar Mail")
-        @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterMail)
-        <br />
-        @Html.Label("Yazar Şifresi")
-        @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterPassword)
-        <br />
-        @Html.Label("Yazar Görsel Linki")
-        @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterImage)
-        <br />
-        @Html.Label("Yazar Hakkında")
-        @Html.TextAreaFor(x => x.WriterAbout, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterAbout)
-        <br /><br />
-        <button class="btn btn-primary">Kaydet</button>
+<div class="form-group">
+    @Html.Label("Yazar Adı")
+    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Yazar Soyadı")
+    @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterSurName, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Yazar Mail")
+    @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterMail, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Yazar Şifresi")
+    @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Yazar Görsel Linki")
+    @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterImage, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Yazar Ünvan")
+    @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterTitle, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Yazar Hakkında")
+    @Html.TextAreaFor(x => x.WriterAbout, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.WriterAbout, "", new { @class = "text-danger" })
+    <br /><br />
+    <button class="btn btn-primary">Kaydet</button>
 
-    </div>
+</div>
 }
 

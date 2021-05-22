@@ -59,8 +59,21 @@ namespace MvcPorject.Controllers
         [HttpPost]
         public ActionResult UpdateWriter(Writer writer)
         {
-            _writerManager.UpdateWriter(writer);
-            return RedirectToAction("Index");
+            WriterValidator validator = new WriterValidator();
+            ValidationResult result = validator.Validate(writer);
+            if (result.IsValid)
+            {
+                _writerManager.UpdateWriter(writer);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }

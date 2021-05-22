@@ -15,6 +15,8 @@ namespace MvcPorject.Controllers
     {
         private readonly HeadingManager _headingManager = new HeadingManager(new EfHeadingDal());
         private readonly CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
+        private readonly WriterManager _writerManager = new WriterManager(new EfWriterDal());
+
         public ActionResult Index()
         {
             return View(_headingManager.GetAll());
@@ -31,6 +33,7 @@ namespace MvcPorject.Controllers
         public ActionResult AddHeading()
         {
             GetCategorys();
+            GetWriter();
             return View();
         }
 
@@ -42,7 +45,7 @@ namespace MvcPorject.Controllers
             if (result.IsValid)
             {
                 heading.HeadingDate=DateTime.Now;
-                heading.WriterId = 3;
+                heading.WriterId = 4;
                 _headingManager.AddHeading(heading);
                 return RedirectToAction("Index");
             }
@@ -78,18 +81,24 @@ namespace MvcPorject.Controllers
 
         private void GetCategorys()
         {
-            List<SelectListItem> kategoriler = new List<SelectListItem>();
-
-            foreach (var item in _categoryManager.GetAll())
-            {
-                kategoriler.Add(
-                    new SelectListItem
+            List<SelectListItem> categorys = (from x in _categoryManager.GetAll()
+                    select  new SelectListItem
                     {
-                        Text = item.CategoryName,
-                        Value = item.CategoryId.ToString(),
-                    });
-            }
-            ViewBag.Categorys = kategoriler;
+                        Text = x.CategoryName,
+                        Value = x.CategoryId.ToString(),
+                    }).ToList();
+            ViewBag.Categorys = categorys;
+        }
+
+        private void GetWriter()
+        {
+            List<SelectListItem> writer = (from x in _writerManager.GetAll()
+                select new SelectListItem
+                {
+                    Text = x.WriterName + " " + x.WriterSurName,
+                    Value = x.WriterId.ToString(),
+                }).ToList();
+            ViewBag.Writer = writer;
         }
     }
 }

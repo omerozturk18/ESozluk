@@ -13,6 +13,7 @@
     <tr>
         <th>#</th>
         <th>Başlık Adı</th>
+        <th>Başlık Kategorisi</th>
         <th>Başlık Tarihi</th>
         <th>Sil</th>
         <th>Güncelle</th>
@@ -22,6 +23,7 @@
         <tr>
             <th>@item.HeadingId</th>
             <td>@item.HeadingName</td>
+            <td>@item.Category.CategoryName</td>
             <td>@item.HeadingDate</td>
             <td><a href="/Heading/DeleteHeading/@item.HeadingId" class="btn btn-danger">Sil</a></td>
             <td><a href="/Heading/UpdateHeading/@item.HeadingId" class="btn btn-success">Güncelle</a></td>

@@ -14,8 +14,12 @@
         @Html.ValidationMessageFor(x => x.HeadingName)
         <br />
         @Html.Label("Başlık Kategorisi")
-        @Html.DropDownList("CategoryId", new SelectList(ViewBag.Categorys, "Value","Text"),"Kategori Seçiniz",new { @class="form-control" })
+        @Html.DropDownListFor(x=>x.CategoryId ,(List<SelectListItem>)ViewBag.Categorys,"Kategori Seçiniz",new { @class="form-control" })
         @Html.ValidationMessageFor(x=>x.CategoryId)
+        <br />
+        @Html.Label("Yazar")
+        @Html.DropDownListFor(x=>x.WriterId ,(List<SelectListItem>)ViewBag.Writer,"Yazar Seçiniz",new { @class="form-control" })
+        @Html.ValidationMessageFor(x=>x.WriterId)
         <br />
         <button class="btn btn-primary">Kaydet</button>
 
