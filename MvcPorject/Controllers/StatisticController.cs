@@ -20,6 +20,7 @@ namespace MvcPorject.Controllers
             ViewBag.numberOfHeaderInCategory = _statisticManager.NumberOfHeaderInCategory(1);
             ViewBag.writerFilterCount = _statisticManager.WriterFilterCount();
             ViewBag.categoryWithTheMostHeader = _categoryManager.GetById(_statisticManager.CategoryWithTheMostHeader()).CategoryName;
+            ViewBag.categoryId= _categoryManager.GetById(_statisticManager.CategoryWithTheMostHeader()).CategoryId;
             ViewBag.trueOrFalseDifferenceOfCategory = _statisticManager.TrueOrFalseDifferenceOfCategory();
             return View();
         }

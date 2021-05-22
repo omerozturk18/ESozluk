@@ -27,6 +27,7 @@ namespace MvcPorject.Controllers
         }
         public ActionResult GetByCategory(int id)
         {
+            ViewBag.categoryHeader = _categoryManager.GetById(id).CategoryName;
             return View(_headingManager.GetByCategory(id));
         }
         [HttpGet]
