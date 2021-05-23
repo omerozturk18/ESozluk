@@ -135,6 +135,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HeadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
@@ -2286,6 +2287,7 @@
     <Content Include="Views\Heading\GetByCategory.cshtml" />
     <Content Include="Views\Heading\AddHeading.cshtml" />
     <Content Include="Views\Heading\UpdateHeading.cshtml" />
+    <Content Include="Views\Content\ContentByHeading.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

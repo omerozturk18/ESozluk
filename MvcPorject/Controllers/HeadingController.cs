@@ -80,6 +80,7 @@ namespace MvcPorject.Controllers
             return RedirectToAction("Index");
         }
 
+
         private void GetCategorys()
         {
             List<SelectListItem> categorys = (from x in _categoryManager.GetAll()

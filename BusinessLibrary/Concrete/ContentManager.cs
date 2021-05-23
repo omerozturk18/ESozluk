@@ -35,14 +35,14 @@ namespace BusinessLibrary.Concrete
         {
             _contentDal.Update(content);
         }
-        public List<Content> ListContent(Content content)
+        public List<Content> ListByHeadingId(int id)
         {
-            return _contentDal.List(e => e.ContentId == content.ContentId);
+            return _contentDal.List(e => e.HeadingId == id);
         }
 
         public Content GetById(int id)
         {
-            return _contentDal.Get(c => c.ContentId == id);
+            return _contentDal.Get(c => c.HeadingId == id);
         }
     }
 }

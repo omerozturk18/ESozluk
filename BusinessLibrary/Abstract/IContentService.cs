@@ -13,7 +13,7 @@ namespace BusinessLibrary.Abstract
         void AddContent(Content content);
         void DeleteContent(Content content);
         void UpdateContent(Content content);
-         List<Content> ListContent(Content content);
+         List<Content> ListByHeadingId(int id);
          Content GetById(int id);
 
     }
