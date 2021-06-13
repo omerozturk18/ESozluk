@@ -23,6 +23,7 @@ namespace MvcPorject.Controllers
         //}
 
         // GET: Category
+        [Authorize]
         public ActionResult Index()
         {
             return View();

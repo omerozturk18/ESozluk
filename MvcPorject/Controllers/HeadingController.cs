@@ -33,7 +33,7 @@ namespace MvcPorject.Controllers
         [HttpGet]
         public ActionResult AddHeading()
         {
-            GetCategorys();
+            GetCategorizes();
             GetWriter();
             return View();
         }
@@ -62,6 +62,7 @@ namespace MvcPorject.Controllers
         public ActionResult DeleteHeading(int id)
         {
             var headingDelete = _headingManager.GetById(id);
+            headingDelete.HeadingStatus = false;
             _headingManager.DeleteHeading(headingDelete);
             return RedirectToAction("Index");
         }
@@ -69,7 +70,7 @@ namespace MvcPorject.Controllers
         [HttpGet]
         public ActionResult UpdateHeading(int id)
         {
-            GetCategorys();
+            GetCategorizes();
             var headingValue = _headingManager.GetById(id);
             return View(headingValue);
         }
@@ -81,15 +82,15 @@ namespace MvcPorject.Controllers
         }
 
 
-        private void GetCategorys()
+        private void GetCategorizes()
         {
-            List<SelectListItem> categorys = (from x in _categoryManager.GetAll()
+            List<SelectListItem> categorizes = (from x in _categoryManager.GetAll()
                     select  new SelectListItem
                     {
                         Text = x.CategoryName,
                         Value = x.CategoryId.ToString(),
                     }).ToList();
-            ViewBag.Categorys = categorys;
+            ViewBag.Categorys = categorizes;
         }
 
         private void GetWriter()

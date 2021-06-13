@@ -12,10 +12,7 @@ namespace MvcPorject.Controllers
     {
         private readonly ContentManager _contentManager = new ContentManager(new EfContentDal());
         // GET: Content
-        public ActionResult Index()
-        {
-            return View();
-        }
+
         [HttpGet]
         public ActionResult ContentByHeading(int id)
         {

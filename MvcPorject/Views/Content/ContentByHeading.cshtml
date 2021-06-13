@@ -16,26 +16,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- The time line -->
-                        @foreach(var item in Model){
-                            <div class="timeline">
+                        <div class="timeline">
+                            @foreach (var item in Model)
+                            {
                                 <!-- timeline time label -->
                                 <div class="time-label">
-                                    <span class="bg-success"> @(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
+                                    <span class="bg-success"> @(((DateTime) item.ContentDate).ToString("dd-MMM-yyyy"))</span>
                                 </div>
                                 <!-- /.timeline-label -->
                                 <!-- timeline item -->
                                 <div>
                                     <i class="fas fa-comment bg-yellow"></i>
                                     <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">Test</a> @item.Writer.WriterName @item.Writer.WriterSurName</h3>
+                                        <h3 class="timeline-header"><a href="#"> @item.Writer.WriterName @item.Writer.WriterSurName</a></h3>
                                         <div class="timeline-body">
                                             @item.ContentValue
                                         </div>
                                     </div>
                                 </div>
                                 <!-- END timeline item -->
+                            }
                             </div>
-                        }
                     </div>
                     <!-- /.col -->
                 </div>

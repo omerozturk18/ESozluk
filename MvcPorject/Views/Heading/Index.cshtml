@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@{ string color = "";}
+@{
+    string color = "";
+    string status = "";
+    string statusColor = "";
+}
 <!DOCTYPE html>
 <html>
 
@@ -45,8 +49,11 @@
                             <th style="width: 20%">
                                 Başlık Adı
                             </th>
-                            <th style="width: 30%">
+                            <th style="width: 15%">
                                 Oluşturan Yazar
+                            </th>
+                            <th style="width: 10%">
+                                Durum
                             </th>
                             <th style="width: 8%" class="text-center">
                                 Kategori
@@ -79,47 +86,61 @@
                                 color = "badge badge-primary";
 
                             }
-                            <tr>
-                                <td>
-                                    #
-                                </td>
-                                <td>
-                                    <a>
-                                        @item.HeadingName
-                                    </a>
-                                    <br />
-                                    <small>
-                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
-                                    </small>
-                                </td>
-                                <td>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td class="project-state">
-                                    <span class="@color">@item.Category.CategoryName</span>
-                                </td>
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        Yazılar
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="/Heading/UpdateHeading/@item.HeadingId">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Düzenle
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingId">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Sil
-                                    </a>
-                                </td>
-                            </tr>
+                            switch (item.HeadingStatus)
+                            {
+                                case true:
+                                    status="Aktif";
+                                    statusColor="badge badge-success";
+                                    break;
+                                case false:
+                                    status = "Pasif";
+                                    statusColor = "badge badge-danger";
+                                    break;
+                            }
+                        <tr>
+                            <td>
+                                #
+                            </td>
+                            <td>
+                                <a>
+                                    @item.HeadingName
+                                </a>
+                                <br />
+                                <small>
+                                    @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                </small>
+                            </td>
+                            <td>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="@statusColor"> @status</span>
+                            </td>
+                            <td class="project-state">
+                                <span class="@color">@item.Category.CategoryName</span>
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    Yazılar
+                                </a>
+                                <a class="btn btn-info btn-sm" href="/Heading/UpdateHeading/@item.HeadingId">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Düzenle
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingId">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

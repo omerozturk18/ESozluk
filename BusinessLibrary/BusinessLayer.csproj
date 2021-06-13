@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAFB7D56-87F0-4FC4-9CA6-93B67EE6ACAD}</ProjectGuid>
+    <ProjectGuid>{24290F54-AB1E-4AF7-961C-7FD5A290E27B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccessLibrary</RootNamespace>
-    <AssemblyName>DataAccessLibrary</AssemblyName>
+    <RootNamespace>BusinessLibrary</RootNamespace>
+    <AssemblyName>BusinessLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.1.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,60 +54,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IAboutDal.cs" />
-    <Compile Include="Abstract\ICategoryDal.cs" />
-    <Compile Include="Abstract\IContactDal.cs" />
-    <Compile Include="Abstract\IContentDal.cs" />
-    <Compile Include="Abstract\IHeadingDal.cs" />
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IWriterDal.cs" />
-    <Compile Include="Concrete\Context.cs" />
-    <Compile Include="Concrete\Repositories\GenericRepository.cs" />
-    <Compile Include="Concrete\EntityFramework\EfAboutDal.cs" />
-    <Compile Include="Concrete\EntityFramework\EfContactDal.cs" />
-    <Compile Include="Concrete\EntityFramework\EfContentDal.cs" />
-    <Compile Include="Concrete\EntityFramework\EfHeadingDal.cs" />
-    <Compile Include="Concrete\EntityFramework\EfWriterDal.cs" />
-    <Compile Include="Concrete\EntityFramework\EFCategoryDal.cs" />
-    <Compile Include="Migrations\202105141656102_mig_writer_edit.cs" />
-    <Compile Include="Migrations\202105141656102_mig_writer_edit.designer.cs">
-      <DependentUpon>202105141656102_mig_writer_edit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105220721115_mig_writertittle_add.cs" />
-    <Compile Include="Migrations\202105220721115_mig_writertittle_add.designer.cs">
-      <DependentUpon>202105220721115_mig_writertittle_add.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105231901171_mig_writerstatus.cs" />
-    <Compile Include="Migrations\202105231901171_mig_writerstatus.designer.cs">
-      <DependentUpon>202105231901171_mig_writerstatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Abstract\IAdminService.cs" />
+    <Compile Include="Abstract\IMessageService .cs" />
+    <Compile Include="Abstract\IContactService.cs" />
+    <Compile Include="Abstract\IContentService.cs" />
+    <Compile Include="Abstract\IHeadingService.cs" />
+    <Compile Include="Abstract\IStatisticService.cs" />
+    <Compile Include="Abstract\IWriterService.cs" />
+    <Compile Include="Abstract\IAboutService.cs" />
+    <Compile Include="Abstract\ICategoryService.cs" />
+    <Compile Include="Concrete\AdminManager.cs" />
+    <Compile Include="Concrete\MessageManager.cs" />
+    <Compile Include="Concrete\AboutManager.cs" />
+    <Compile Include="Concrete\ContactManager.cs" />
+    <Compile Include="Concrete\ContentManager.cs" />
+    <Compile Include="Concrete\HeadingManager.cs" />
+    <Compile Include="Concrete\StatisticManager.cs" />
+    <Compile Include="Concrete\WriterManager.cs" />
+    <Compile Include="Concrete\CategoryManager.cs" />
+    <Compile Include="PasswordHash\HashingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
-      <Project>{2C193A47-F8C7-48B9-B7BE-3959E3F48141}</Project>
-      <Name>EntityLayer</Name>
-    </ProjectReference>
+    <Compile Include="ValidationRules\MessageValidator.cs" />
+    <Compile Include="ValidationRules\ContactValidator.cs" />
+    <Compile Include="ValidationRules\AboutValidator.cs" />
+    <Compile Include="ValidationRules\HeadingValidator.cs" />
+    <Compile Include="ValidationRules\WriterValidator.cs" />
+    <Compile Include="ValidationRules\CategoryValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105141656102_mig_writer_edit.resx">
-      <DependentUpon>202105141656102_mig_writer_edit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105220721115_mig_writertittle_add.resx">
-      <DependentUpon>202105220721115_mig_writertittle_add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105231901171_mig_writerstatus.resx">
-      <DependentUpon>202105231901171_mig_writerstatus.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\DataAccessLibrary\DataAccessLayer.csproj">
+      <Project>{eafb7d56-87f0-4fc4-9ca6-93b67ee6acad}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
+      <Project>{2c193a47-f8c7-48b9-b7be-3959e3f48141}</Project>
+      <Name>EntityLayer</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

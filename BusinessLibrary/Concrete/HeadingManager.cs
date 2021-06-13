@@ -28,7 +28,7 @@ namespace BusinessLibrary.Concrete
         }
         public void DeleteHeading(Heading heading)
         {
-            _headingDal.Delete(heading);
+            _headingDal.Update(heading);
         }
 
         public void UpdateHeading(Heading heading)
