@@ -6,12 +6,12 @@ using System.Web.Mvc;
 using BusinessLibrary.Concrete;
 using DataAccessLibrary.Concrete.EntityFramework;
 using EntityLayer.Concrete;
-
+using System.Web.Security;
 namespace MvcPorject.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly AdminManager _adminManager = new AdminManager(new EfAdminDal());
+        private readonly AuthManager _adminManager = new AuthManager(new EfAuthDal());
 
         [HttpGet]
         public ActionResult Index()
@@ -21,8 +21,13 @@ namespace MvcPorject.Controllers
         [HttpPost]
         public ActionResult Index(AdminDto adminDto)
         {
-            var result = _adminManager.Login(adminDto.AdminUserName, adminDto.AdminPassword);
-            if (result)return RedirectToAction("Index","AdminCategory");
+            var admin = _adminManager.Login(adminDto.AdminUserName, adminDto.AdminPassword);
+            if (admin!=null)
+            {
+                FormsAuthentication.SetAuthCookie(admin.AdminUserName,false);
+                Session["AdminUserName"] = admin.AdminUserName;
+                return RedirectToAction("Index", "AdminCategory");
+            }
        
             ViewBag.Result = true;
             return View();

@@ -143,12 +143,14 @@
     <Compile Include="Controllers\HeadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE-3.0.4\.gitignore" />
@@ -2003,6 +2005,16 @@
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.min.css" />
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.min.js" />
     <Content Include="AdminLTE-3.0.4\starter.html" />
+    <Content Include="AdminLTE-3.0.4\web\css\style.css" />
+    <Content Include="AdminLTE-3.0.4\web\images\5.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\img1.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\sprite.png" />
+    <Content Include="AdminLTE-3.0.4\web\index.html" />
+    <Content Include="AdminLTE-3.0.4\web\js\bars.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\easyResponsiveTabs.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\jquery-1.11.1.min.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\jquery.circlechart.js" />
+    <Content Include="AdminLTE-3.0.4\web\w3layouts-License.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2378,6 +2390,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="SS\screencapture-localhost-44370-Skill-Index-2021-06-14-20_59_42.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2424,6 +2437,7 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Skill\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

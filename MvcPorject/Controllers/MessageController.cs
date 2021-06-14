@@ -16,7 +16,8 @@ namespace MvcPorject.Controllers
         private readonly MessageManager _messageManager = new MessageManager(new EfMessageDal());
 
         private readonly MessageValidator _messageValidator = new MessageValidator();
-        // GET: Message
+
+        [Authorize]
         public ActionResult Inbox()
         {
             return View(_messageManager.GetAllInbox("admin@admin.com.tr"));

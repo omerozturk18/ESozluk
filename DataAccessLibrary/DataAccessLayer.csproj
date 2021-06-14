@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IAdminDal.cs" />
+    <Compile Include="Abstract\ISkillDal.cs" />
+    <Compile Include="Abstract\IAuthDal.cs" />
     <Compile Include="Abstract\IAboutDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
@@ -61,7 +62,8 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
-    <Compile Include="Concrete\EntityFramework\EfAdminDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSkillDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfAuthDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfMessageDal.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
     <Compile Include="Concrete\EntityFramework\EfAboutDal.cs" />
@@ -114,6 +116,10 @@
     <Compile Include="Migrations\202106131903514_mig_admin_table.designer.cs">
       <DependentUpon>202106131903514_mig_admin_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106141645102_mig_addskill.cs" />
+    <Compile Include="Migrations\202106141645102_mig_addskill.designer.cs">
+      <DependentUpon>202106141645102_mig_addskill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -163,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106131903514_mig_admin_table.resx">
       <DependentUpon>202106131903514_mig_admin_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141645102_mig_addskill.resx">
+      <DependentUpon>202106141645102_mig_addskill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

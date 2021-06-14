@@ -21,7 +21,7 @@ namespace MvcPorject.Controllers
         //    _categoryService = categoryService;
         //}
 
-        [Authorize]
+        [Authorize(Roles = "A")]
         public ActionResult Index()
         {
             return View(_categoryManager.GetAll());

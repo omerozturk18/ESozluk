@@ -10,13 +10,13 @@ using Core.Utilities.Security.Hashing;
 
 namespace BusinessLibrary.Concrete
 {
-    public class AdminManager : IAdminService
+    public class AuthManager : IAuthService
     {
-        private readonly IAdminDal _adminDal;
+        private readonly IAuthDal _authDal;
 
-        public AdminManager(IAdminDal adminDal)
+        public AuthManager(IAuthDal authDal)
         {
-            _adminDal = adminDal;
+            _authDal = authDal;
         }
 
 
@@ -31,15 +31,20 @@ namespace BusinessLibrary.Concrete
                 PasswordSalt = passwordSalt,
                 AdminRole = "c"
             };
-            _adminDal.Add(admin);
+            _authDal.Add(admin);
         }
 
-        public bool Login(string adminUserName, string adminPassword)
+        public Admin Login(string adminUserName, string adminPassword)
         {
-            var userToCheck = _adminDal.Get(x=>x.AdminUserName==adminUserName);
-            if (userToCheck == null) return false;
-            if (!HashingHelper.VerifyPasswordHash(adminPassword, userToCheck.PasswordHash, userToCheck.PasswordSalt))return false;
-            return true;
+            var userToCheck = _authDal.Get(x=>x.AdminUserName==adminUserName);
+            if (userToCheck == null) return null;
+            if (!HashingHelper.VerifyPasswordHash(adminPassword, userToCheck.PasswordHash, userToCheck.PasswordSalt))return null;
+            return userToCheck;
+        }
+
+        public Admin GetByAdmin(string adminUserName)
+        {
+            return _authDal.Get(x => x.AdminUserName == adminUserName);
         }
     }
 }

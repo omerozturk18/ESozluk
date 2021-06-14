@@ -7,9 +7,10 @@ using EntityLayer.Concrete;
 
 namespace BusinessLibrary.Abstract
 {
-    interface IAdminService
+   public interface IAuthService
     {
         void Register(AdminDto adminDto);
-        bool Login(string adminUserName,string adminPassword);
+        Admin Login(string adminUserName,string adminPassword);
+        Admin GetByAdmin(string adminUserName);
     }
 }
