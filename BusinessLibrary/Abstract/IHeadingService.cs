@@ -16,6 +16,7 @@ namespace BusinessLibrary.Abstract
          List<Heading> ListHeading(Heading heading);
          Heading GetById(int id);
          List<Heading> GetByWriter(int id);
+         List<Heading> GetByWriterOfStatus(int id);
          List<Heading> GetByCategory(int id);
     }
 }

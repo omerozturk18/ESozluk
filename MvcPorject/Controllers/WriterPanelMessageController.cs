@@ -11,19 +11,17 @@ using FluentValidation.Results;
 
 namespace MvcPorject.Controllers
 {
-    public class MessageController : Controller
+    public class WriterPanelMessageController : Controller
     {
         private readonly MessageManager _messageManager = new MessageManager(new EfMessageDal());
         private readonly MessageValidator _messageValidator = new MessageValidator();
-
-        [Authorize]
         public ActionResult Inbox()
         {
-            return View(_messageManager.GetAllInbox("admin@admin.com.tr"));
+            return View(_messageManager.GetAllInbox("omer@omer.com"));
         }
         public ActionResult Sendbox()
         {
-            return View(_messageManager.GetAllSendbox("admin@admin.com.tr"));
+            return View(_messageManager.GetAllSendbox("omer@omer.com"));
         }
         [HttpGet]
         public ActionResult NewMessage()
@@ -43,17 +41,17 @@ namespace MvcPorject.Controllers
                 }
                 return View();
             }
-            if (Request.Form["draft"] !=null) message.IsTheMessageIsDraft = true;
+            if (Request.Form["draft"] != null) message.IsTheMessageIsDraft = true;
             else message.IsTheMessageIsDraft = false;
             message.MessageDate = DateTime.Now;
-            message.SenderMail = "admin@admin.com.tr";
+            message.SenderMail = "omer@omer.com";
             _messageManager.AddMessage(message);
             return RedirectToAction("Sendbox");
 
         }
         public ActionResult Drafts()
         {
-            return View(_messageManager.GetAllDraft("admin@admin.com.tr"));
+            return View(_messageManager.GetAllDraft("omer@omer.com"));
         }
 
         public ActionResult MessageDetail(int id)
@@ -62,6 +60,12 @@ namespace MvcPorject.Controllers
             messageDetail.IsRead = true;
             _messageManager.UpdateMessage(messageDetail);
             return View(messageDetail);
+        }
+        public PartialViewResult WriterMessageListMenu()
+        {
+            ViewBag.Inbox = _messageManager.GetAllInbox("omer@omer.com").Where(x => x.IsRead == false).Count();
+            ViewBag.Draft = _messageManager.GetAllDraft("omer@omer.com").Count();
+            return PartialView();
         }
     }
 }

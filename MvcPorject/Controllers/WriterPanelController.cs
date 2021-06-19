@@ -11,46 +11,38 @@ using FluentValidation.Results;
 
 namespace MvcPorject.Controllers
 {
-    public class HeadingController : Controller
+    public class WriterPanelController : Controller
     {
         private readonly HeadingManager _headingManager = new HeadingManager(new EfHeadingDal());
         private readonly CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
         private readonly WriterManager _writerManager = new WriterManager(new EfWriterDal());
 
-        public ActionResult Index()
+        public ActionResult WriterProfile()
         {
-            return View(_headingManager.GetAll());
-        }
-        public ActionResult GetByWriter(int id)
-        {
-            return View(_headingManager.GetByWriter(id));
-        }
-        public ActionResult GetByCategory(int id)
-        {
-            ViewBag.categoryHeader = _categoryManager.GetById(id).CategoryName;
-            return View(_headingManager.GetByCategory(id));
-        }
-        [HttpGet]
-        public ActionResult AddHeading()
-        {
-            GetCategorizes();
-            GetWriter();
             return View();
         }
-
+        public ActionResult MyHeading()
+        {
+            return View(_headingManager.GetByWriterOfStatus(1));
+        }
+        [HttpGet]
+        public ActionResult NewHeading()
+        {
+            GetCategorizes();
+            return View();
+        }
         [HttpPost]
-        public ActionResult AddHeading(Heading heading)
+        public ActionResult NewHeading(Heading heading)
         {
             HeadingValidator validator = new HeadingValidator();
             ValidationResult result = validator.Validate(heading);
             if (result.IsValid)
             {
-                heading.HeadingDate=DateTime.Now;
+                heading.HeadingDate = DateTime.Now;
                 heading.WriterId = 1;
                 heading.HeadingStatus = true;
-
                 _headingManager.AddHeading(heading);
-                return RedirectToAction("Index");
+                return RedirectToAction("WriterProfile");
             }
             else
             {
@@ -61,14 +53,6 @@ namespace MvcPorject.Controllers
             }
             return View();
         }
-        public ActionResult DeleteHeading(int id)
-        {
-            var headingDelete = _headingManager.GetById(id);
-            headingDelete.HeadingStatus = false;
-            _headingManager.DeleteHeading(headingDelete);
-            return RedirectToAction("Index");
-        }
-
         [HttpGet]
         public ActionResult UpdateHeading(int id)
         {
@@ -80,30 +64,25 @@ namespace MvcPorject.Controllers
         public ActionResult UpdateHeading(Heading heading)
         {
             _headingManager.UpdateHeading(heading);
-            return RedirectToAction("Index");
+            return RedirectToAction("WriterProfile");
         }
-
-
+        public ActionResult DeleteHeading(int id)
+        {
+            var headingDelete = _headingManager.GetById(id);
+            headingDelete.HeadingStatus = false;
+            _headingManager.DeleteHeading(headingDelete);
+            return RedirectToAction("WriterProfile");
+        }
         private void GetCategorizes()
         {
             List<SelectListItem> categorizes = (from x in _categoryManager.GetAll()
-                    select  new SelectListItem
-                    {
-                        Text = x.CategoryName,
-                        Value = x.CategoryId.ToString(),
-                    }).ToList();
+                select new SelectListItem
+                {
+                    Text = x.CategoryName,
+                    Value = x.CategoryId.ToString(),
+                }).ToList();
             ViewBag.Categorys = categorizes;
         }
 
-        private void GetWriter()
-        {
-            List<SelectListItem> writer = (from x in _writerManager.GetAll()
-                select new SelectListItem
-                {
-                    Text = x.WriterName + " " + x.WriterSurName,
-                    Value = x.WriterId.ToString(),
-                }).ToList();
-            ViewBag.Writer = writer;
-        }
     }
 }

@@ -14,6 +14,7 @@ namespace BusinessLibrary.Abstract
         void DeleteContent(Content content);
         void UpdateContent(Content content);
          List<Content> ListByHeadingId(int id);
+         List<Content> ListByWriterId(int id);
          Content GetById(int id);
 
     }

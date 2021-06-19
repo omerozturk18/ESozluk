@@ -49,7 +49,10 @@ namespace BusinessLibrary.Concrete
         {
             return _headingDal.List(w => w.WriterId == id);
         }
-
+        public List<Heading> GetByWriterOfStatus(int id)
+        {
+            return _headingDal.List(w => w.WriterId == id && w.HeadingStatus == true);
+        }
         public List<Heading> GetByCategory(int id)
         {
             return _headingDal.List(c => c.CategoryId == id);
