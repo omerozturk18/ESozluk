@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using BusinessLibrary.Concrete;
 using DataAccessLibrary.Concrete.EntityFramework;
 
-namespace MvcPorject.Controllers
+namespace MvcProject.Controllers
 {
     public class GalleryController : Controller
     {

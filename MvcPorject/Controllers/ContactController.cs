@@ -7,7 +7,7 @@ using BusinessLibrary.Concrete;
 using BusinessLibrary.ValidationRules;
 using DataAccessLibrary.Concrete.EntityFramework;
 
-namespace MvcPorject.Controllers
+namespace MvcProject.Controllers
 {
     public class ContactController : Controller
     {

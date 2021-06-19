@@ -9,7 +9,7 @@ using DataAccessLibrary.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 
-namespace MvcPorject.Controllers
+namespace MvcProject.Controllers
 {
     public class WriterPanelController : Controller
     {

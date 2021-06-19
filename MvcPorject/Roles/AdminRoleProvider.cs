@@ -6,7 +6,7 @@ using System.Web.Security;
 using BusinessLibrary.Concrete;
 using DataAccessLibrary.Concrete.EntityFramework;
 
-namespace MvcPorject.Roles
+namespace MvcProject.Roles
 {
     public class AdminRoleProvider:RoleProvider
     {

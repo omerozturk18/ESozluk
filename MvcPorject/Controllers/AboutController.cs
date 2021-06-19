@@ -7,7 +7,7 @@ using BusinessLibrary.Concrete;
 using DataAccessLibrary.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 
-namespace MvcPorject.Controllers
+namespace MvcProject.Controllers
 {
     public class AboutController : Controller
     {

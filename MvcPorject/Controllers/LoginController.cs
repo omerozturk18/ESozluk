@@ -7,7 +7,7 @@ using BusinessLibrary.Concrete;
 using DataAccessLibrary.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using System.Web.Security;
-namespace MvcPorject.Controllers
+namespace MvcProject.Controllers
 {
     public class LoginController : Controller
     {

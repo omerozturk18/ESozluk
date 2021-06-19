@@ -10,7 +10,7 @@ using BusinessLibrary.ValidationRules;
 using DataAccessLibrary.Concrete.EntityFramework;
 using FluentValidation.Results;
 
-namespace MvcPorject.Controllers
+namespace MvcProject.Controllers
 {
     public class CategoryController : Controller
     {
