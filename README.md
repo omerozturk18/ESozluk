@@ -1,1 +1,1 @@
-<img src="https://github.com/omerozturk18/MvcPorject/blob/master/MvcPorject/SS/screencapture-localhost-44370-Skill-Index-2021-06-14-20_59_42.png"/>
+<img src="https://raw.githubusercontent.com/omerozturk18/MvcPorject/master/Ekran%20Al%C4%B1nt%C4%B1s%C4%B1.PNG"/>
