@@ -5,7 +5,7 @@ using EntityLayer.Concrete;
 
 namespace DataAccessLibrary.Concrete.EntityFramework
 {
-    public class EfAuthDal : GenericRepository<Admin, Context>, IAuthDal
+    public class EfAdminDal : GenericRepository<Admin, Context>, IAdminDal
     {
     }
 }

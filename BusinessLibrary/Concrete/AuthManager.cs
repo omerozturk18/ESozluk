@@ -7,16 +7,19 @@ using BusinessLibrary.Abstract;
 using DataAccessLibrary.Abstract;
 using EntityLayer.Concrete;
 using Core.Utilities.Security.Hashing;
+using EntityLayer.Dtos;
 
 namespace BusinessLibrary.Concrete
 {
     public class AuthManager : IAuthService
     {
-        private readonly IAuthDal _authDal;
+        private readonly IAdminDal _adminDal;
+        private readonly IWriterDal _writerDal;
 
-        public AuthManager(IAuthDal authDal)
+        public AuthManager(IAdminDal adminDal, IWriterDal writerDal)
         {
-            _authDal = authDal;
+            _adminDal = adminDal;
+            _writerDal = writerDal;
         }
 
 
@@ -31,20 +34,42 @@ namespace BusinessLibrary.Concrete
                 PasswordSalt = passwordSalt,
                 AdminRole = "c"
             };
-            _authDal.Add(admin);
+            _adminDal.Add(admin);
         }
 
-        public Admin Login(string adminUserName, string adminPassword)
+        public Admin Login(LoginDto loginDto)
         {
-            var userToCheck = _authDal.Get(x=>x.AdminUserName==adminUserName);
-            if (userToCheck == null) return null;
-            if (!HashingHelper.VerifyPasswordHash(adminPassword, userToCheck.PasswordHash, userToCheck.PasswordSalt))return null;
+            var userToCheck = _adminDal.Get(x=>x.AdminUserName==loginDto.UserName);
+            if (userToCheck == null) return null; 
+            if (!HashingHelper.VerifyPasswordHash(loginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt)) return null;
+
             return userToCheck;
+        }
+        public Writer WriterLogin(LoginDto loginDto)
+        {
+            var userToCheck = _writerDal.Get(x => x.WriterMail == loginDto.UserName);
+            if (userToCheck == null)return null;
+            if (!HashingHelper.VerifyPasswordHash(loginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt)) return null;
+       
+            return userToCheck;
+
         }
 
         public Admin GetByAdmin(string adminUserName)
         {
-            return _authDal.Get(x => x.AdminUserName == adminUserName);
+            return _adminDal.Get(x => x.AdminUserName == adminUserName);
+        }
+        public void WriterRegister(LoginDto loginDto)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(loginDto.Password, out passwordHash, out passwordSalt);
+            var writer = new Writer
+            {
+                WriterMail = loginDto.UserName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+            _writerDal.Add(writer);
         }
     }
 }

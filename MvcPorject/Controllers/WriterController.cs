@@ -7,6 +7,7 @@ using BusinessLibrary.Concrete;
 using BusinessLibrary.ValidationRules;
 using DataAccessLibrary.Concrete.EntityFramework;
 using EntityLayer.Concrete;
+using EntityLayer.Dtos;
 using FluentValidation.Results;
 
 namespace MvcProject.Controllers
@@ -25,13 +26,13 @@ namespace MvcProject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddWriter(Writer writer)
+        public ActionResult AddWriter(WriterDto writerDto)
         {
             WriterValidator validator = new WriterValidator();
-            ValidationResult result = validator.Validate(writer);
+            ValidationResult result = validator.Validate(writerDto);
             if (result.IsValid)
             {
-                _writerManager.AddWriter(writer);
+                _writerManager.AddWriter(writerDto);
                 return RedirectToAction("Index");
             }
             else
@@ -53,17 +54,17 @@ namespace MvcProject.Controllers
         [HttpGet]
         public ActionResult UpdateWriter(int id)
         {
-            var writerValue = _writerManager.GetById(id);
+            var writerValue = _writerManager.GetByIdOfWriterDto(id);
             return View(writerValue);
         }
         [HttpPost]
-        public ActionResult UpdateWriter(Writer writer)
+        public ActionResult UpdateWriter(WriterDto writerDto)
         {
             WriterValidator validator = new WriterValidator();
-            ValidationResult result = validator.Validate(writer);
+            ValidationResult result = validator.Validate(writerDto);
             if (result.IsValid)
             {
-                _writerManager.UpdateWriter(writer);
+                _writerManager.UpdateWriter(writerDto);
                 return RedirectToAction("Index");
             }
             else

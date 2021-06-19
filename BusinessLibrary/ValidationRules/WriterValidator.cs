@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EntityLayer.Concrete;
+using EntityLayer.Dtos;
 using FluentValidation;
 
 namespace BusinessLibrary.ValidationRules
 {
-    public class WriterValidator:AbstractValidator<Writer>
+    public class WriterValidator:AbstractValidator<WriterDto>
     {
         public WriterValidator()
         {
