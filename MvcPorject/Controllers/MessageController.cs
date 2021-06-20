@@ -19,11 +19,11 @@ namespace MvcProject.Controllers
         [Authorize]
         public ActionResult Inbox()
         {
-            return View(_messageManager.GetAllInbox("admin@admin.com.tr"));
+            return View(_messageManager.GetAllInbox((string)Session["AdminUserUserName"]));
         }
         public ActionResult Sendbox()
         {
-            return View(_messageManager.GetAllSendbox("admin@admin.com.tr"));
+            return View(_messageManager.GetAllSendbox((string)Session["AdminUserUserName"]));
         }
         [HttpGet]
         public ActionResult NewMessage()
@@ -46,14 +46,14 @@ namespace MvcProject.Controllers
             if (Request.Form["draft"] !=null) message.IsTheMessageIsDraft = true;
             else message.IsTheMessageIsDraft = false;
             message.MessageDate = DateTime.Now;
-            message.SenderMail = "admin@admin.com.tr";
+            message.SenderMail = (string)Session["AdminUserUserName"];
             _messageManager.AddMessage(message);
             return RedirectToAction("Sendbox");
 
         }
         public ActionResult Drafts()
         {
-            return View(_messageManager.GetAllDraft("admin@admin.com.tr"));
+            return View(_messageManager.GetAllDraft((string)Session["AdminUserUserName"]));
         }
 
         public ActionResult MessageDetail(int id)

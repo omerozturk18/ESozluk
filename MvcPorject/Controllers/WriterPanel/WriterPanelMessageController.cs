@@ -17,11 +17,11 @@ namespace MvcProject.Controllers
         private readonly MessageValidator _messageValidator = new MessageValidator();
         public ActionResult Inbox()
         {
-            return View(_messageManager.GetAllInbox("omer@omer.com"));
+            return View(_messageManager.GetAllInbox((string)Session["WriterUserName"]));
         }
         public ActionResult Sendbox()
         {
-            return View(_messageManager.GetAllSendbox("omer@omer.com"));
+            return View(_messageManager.GetAllSendbox((string)Session["WriterUserName"]));
         }
         [HttpGet]
         public ActionResult NewMessage()
@@ -44,14 +44,15 @@ namespace MvcProject.Controllers
             if (Request.Form["draft"] != null) message.IsTheMessageIsDraft = true;
             else message.IsTheMessageIsDraft = false;
             message.MessageDate = DateTime.Now;
-            message.SenderMail = "omer@omer.com";
+            message.IsRead = false;
+            message.SenderMail = (string)Session["WriterUserName"];
             _messageManager.AddMessage(message);
             return RedirectToAction("Sendbox");
 
         }
         public ActionResult Drafts()
         {
-            return View(_messageManager.GetAllDraft("omer@omer.com"));
+            return View(_messageManager.GetAllDraft((string)Session["WriterUserName"]));
         }
 
         public ActionResult MessageDetail(int id)
@@ -63,8 +64,8 @@ namespace MvcProject.Controllers
         }
         public PartialViewResult WriterMessageListMenu()
         {
-            ViewBag.Inbox = _messageManager.GetAllInbox("omer@omer.com").Where(x => x.IsRead == false).Count();
-            ViewBag.Draft = _messageManager.GetAllDraft("omer@omer.com").Count();
+            ViewBag.Inbox = _messageManager.GetAllInbox((string)Session["WriterUserName"]).Where(x => x.IsRead == false).Count();
+            ViewBag.Draft = _messageManager.GetAllDraft((string)Session["WriterUserName"]).Count();
             return PartialView();
         }
     }

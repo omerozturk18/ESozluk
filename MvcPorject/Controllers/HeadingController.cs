@@ -15,7 +15,7 @@ namespace MvcProject.Controllers
     {
         private readonly HeadingManager _headingManager = new HeadingManager(new EfHeadingDal());
         private readonly CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
-        private readonly WriterManager _writerManager = new WriterManager(new EfWriterDal());
+        private readonly AdminManager _adminManager = new AdminManager(new EfAdminDal());
 
         public ActionResult Index()
         {
@@ -34,7 +34,6 @@ namespace MvcProject.Controllers
         public ActionResult AddHeading()
         {
             GetCategorizes();
-            GetWriter();
             return View();
         }
 
@@ -45,8 +44,9 @@ namespace MvcProject.Controllers
             ValidationResult result = validator.Validate(heading);
             if (result.IsValid)
             {
+                var admin = _adminManager.GetByAdmin((string) Session["AdminUserName"]);
                 heading.HeadingDate=DateTime.Now;
-                heading.WriterId = 1;
+                heading.WriterId = admin.AdminId;
                 heading.HeadingStatus = true;
 
                 _headingManager.AddHeading(heading);
@@ -95,15 +95,5 @@ namespace MvcProject.Controllers
             ViewBag.Categorys = categorizes;
         }
 
-        private void GetWriter()
-        {
-            List<SelectListItem> writer = (from x in _writerManager.GetAll()
-                select new SelectListItem
-                {
-                    Text = x.WriterName + " " + x.WriterSurName,
-                    Value = x.WriterId.ToString(),
-                }).ToList();
-            ViewBag.Writer = writer;
-        }
     }
 }

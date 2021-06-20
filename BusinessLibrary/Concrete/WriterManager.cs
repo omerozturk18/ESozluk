@@ -27,8 +27,7 @@ namespace BusinessLibrary.Concrete
         }
         public void AddWriter(WriterDto writerDto)
         {
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out var passwordHash, out var passwordSalt);
             var writer = new Writer
             {
                 WriterName = writerDto.WriterName,
@@ -50,8 +49,8 @@ namespace BusinessLibrary.Concrete
 
         public void UpdateWriter(WriterDto writerDto)
         {
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out passwordHash, out passwordSalt);
+
+            HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out var passwordHash, out var passwordSalt);
             var writer = new Writer
             {
                 WriterName = writerDto.WriterName,
@@ -89,6 +88,10 @@ namespace BusinessLibrary.Concrete
                 WriterStatus = writer.WriterStatus
             };
             return writerDto;
+        }
+        public Writer GetByWriter(string writerUserName)
+        {
+            return _writerDal.Get(x => x.WriterMail == writerUserName);
         }
     }
 }

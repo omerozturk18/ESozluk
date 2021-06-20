@@ -25,8 +25,7 @@ namespace BusinessLibrary.Concrete
 
         public void Register(AdminDto adminDto)
         {
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(adminDto.AdminPassword, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(adminDto.AdminPassword, out var passwordHash, out var passwordSalt);
             var admin = new Admin
             {
                 AdminUserName =adminDto.AdminUserName,
@@ -55,14 +54,9 @@ namespace BusinessLibrary.Concrete
 
         }
 
-        public Admin GetByAdmin(string adminUserName)
-        {
-            return _adminDal.Get(x => x.AdminUserName == adminUserName);
-        }
         public void WriterRegister(LoginDto loginDto)
         {
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(loginDto.Password, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(loginDto.Password, out var passwordHash, out var passwordSalt);
             var writer = new Writer
             {
                 WriterMail = loginDto.UserName,

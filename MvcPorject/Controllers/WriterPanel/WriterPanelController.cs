@@ -23,6 +23,7 @@ namespace MvcProject.Controllers
         }
         public ActionResult MyHeading()
         {
+            var writer = _writerManager.GetByWriter((string)Session["WriterUserName"]);
             return View(_headingManager.GetByWriterOfStatus(1));
         }
         [HttpGet]
@@ -38,8 +39,9 @@ namespace MvcProject.Controllers
             ValidationResult result = validator.Validate(heading);
             if (result.IsValid)
             {
+                var writer = _writerManager.GetByWriter((string)Session["WriterUserName"]);
                 heading.HeadingDate = DateTime.Now;
-                heading.WriterId = 1;
+                heading.WriterId = writer.WriterId;
                 heading.HeadingStatus = true;
                 _headingManager.AddHeading(heading);
                 return RedirectToAction("WriterProfile");

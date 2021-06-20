@@ -17,10 +17,6 @@
         @Html.DropDownListFor(x=>x.CategoryId ,(List<SelectListItem>)ViewBag.Categorys,"Kategori Seçiniz",new { @class="form-control" })
         @Html.ValidationMessageFor(x=>x.CategoryId)
         <br />
-        @Html.Label("Yazar")
-        @Html.DropDownListFor(x=>x.WriterId ,(List<SelectListItem>)ViewBag.Writer,"Yazar Seçiniz",new { @class="form-control" })
-        @Html.ValidationMessageFor(x=>x.WriterId)
-        <br />
         <button class="btn btn-primary">Kaydet</button>
 
     </div>

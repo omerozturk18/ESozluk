@@ -13,9 +13,8 @@ namespace MvcProject.Controllers
     {
         private readonly ContactManager _contactManager = new ContactManager(new EfContactDal());
         private readonly MessageManager _messageManager = new MessageManager(new EfMessageDal());
+        private readonly ContactValidator _contactValidator = new ContactValidator();
 
-
-        private ContactValidator _contactValidator = new ContactValidator();
         // GET: Contact
         public ActionResult Index()
         {
@@ -31,8 +30,8 @@ namespace MvcProject.Controllers
         public PartialViewResult MessageListMenu()
         {
             ViewBag.Contact = _contactManager.GetAll().Where(x => x.IsRead == false).Count();
-            ViewBag.Inbox = _messageManager.GetAllInbox("admin@admin.com.tr").Where(x => x.IsRead == false).Count();
-            ViewBag.Draft = _messageManager.GetAllDraft("admin@admin.com.tr").Count();
+            ViewBag.Inbox = _messageManager.GetAllInbox((string)Session["AdminUserUserName"]).Where(x => x.IsRead == false).Count();
+            ViewBag.Draft = _messageManager.GetAllDraft((string)Session["AdminUserUserName"]).Count();
             return PartialView();
         }
     }

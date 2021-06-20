@@ -146,9 +146,9 @@
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
-    <Compile Include="Controllers\WriterPanelContentController.cs" />
-    <Compile Include="Controllers\WriterPanelController.cs" />
-    <Compile Include="Controllers\WriterPanelMessageController.cs" />
+    <Compile Include="Controllers\WriterPanel\WriterPanelContentController.cs" />
+    <Compile Include="Controllers\WriterPanel\WriterPanelController.cs" />
+    <Compile Include="Controllers\WriterPanel\WriterPanelMessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

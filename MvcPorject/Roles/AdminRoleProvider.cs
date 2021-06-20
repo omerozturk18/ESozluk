@@ -10,7 +10,7 @@ namespace MvcProject.Roles
 {
     public class AdminRoleProvider:RoleProvider
     {
-        private readonly AuthManager _authManager = new AuthManager(new EfAdminDal(),new EfWriterDal());
+        private readonly AdminManager _adminManager = new AdminManager(new EfAdminDal());
         public override bool IsUserInRole(string username, string roleName)
         {
             throw new NotImplementedException();
@@ -18,7 +18,7 @@ namespace MvcProject.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            var admin = _authManager.GetByAdmin(username);
+            var admin = _adminManager.GetByAdmin(username);
             return new string[] {admin.AdminRole};
         }
 
