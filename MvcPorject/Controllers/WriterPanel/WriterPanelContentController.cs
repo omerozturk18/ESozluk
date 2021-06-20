@@ -16,7 +16,7 @@ namespace MvcProject.Controllers
         public ActionResult MyContent()
         {
             var writer = _writerManager.GetByWriter((string) Session["WriterUserName"]);
-            return View(_contentManager.ListByWriterId(writer.WriterId));
+            return View(_contentManager.ListByContentOfWriterId(writer.WriterId));
         }
     }
 }

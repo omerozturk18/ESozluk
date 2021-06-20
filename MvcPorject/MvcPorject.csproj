@@ -2570,6 +2570,7 @@
     <Content Include="Views\WriterPanelContent\MyContent.cshtml" />
     <Content Include="Views\Login\WriterLogin.cshtml" />
     <Content Include="Views\Login\WriterRegister.cshtml" />
+    <Content Include="Views\ErrorPage\Page401.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

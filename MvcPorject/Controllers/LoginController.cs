@@ -11,6 +11,7 @@ using EntityLayer.Dtos;
 
 namespace MvcProject.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly AuthManager _authManager = new AuthManager(new EfAdminDal(),new EfWriterDal());

@@ -39,7 +39,7 @@ namespace BusinessLibrary.Concrete
         {
             return _contentDal.List(e => e.HeadingId == id);
         }
-        public List<Content> ListByWriterId(int id)
+        public List<Content> ListByContentOfWriterId(int id)
         {
             return _contentDal.List(e => e.WriterId == id);
         }
