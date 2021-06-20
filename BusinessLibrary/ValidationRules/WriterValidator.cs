@@ -24,6 +24,8 @@ namespace BusinessLibrary.ValidationRules
             RuleFor(x => x.WriterTitle).NotEmpty().WithMessage("Yazar Ünvanı Boş Geçilemez");
             RuleFor(x => x.WriterPassword).NotEmpty().WithMessage("Yazar Şifresi Boş Geçilemez");
             RuleFor(x => x.WriterPassword).MinimumLength(6).WithMessage("Yazar Şifresi En Az 6 Karakter Olmalıdır");
+            RuleFor(x => x.WriterVerifyPassword).NotEmpty().WithMessage("Yazar Şifresi Boş Geçilemez");
+            RuleFor(x => x.WriterVerifyPassword).MinimumLength(6).WithMessage("Yazar Şifresi En Az 6 Karakter Olmalıdır");
 
 
         }

@@ -24,7 +24,7 @@ namespace MvcProject.Controllers
         public ActionResult MyHeading()
         {
             var writer = _writerManager.GetByWriter((string)Session["WriterUserName"]);
-            return View(_headingManager.GetByWriterOfStatus(1));
+            return View(_headingManager.GetByWriterOfStatus(writer.WriterId));
         }
         [HttpGet]
         public ActionResult NewHeading()
@@ -74,6 +74,10 @@ namespace MvcProject.Controllers
             headingDelete.HeadingStatus = false;
             _headingManager.DeleteHeading(headingDelete);
             return RedirectToAction("WriterProfile");
+        }
+        public ActionResult AllHeading()
+        {
+            return View(_headingManager.GetAll());
         }
         private void GetCategorizes()
         {

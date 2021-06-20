@@ -21,6 +21,7 @@ namespace EntityLayer.Dtos
         public string WriterMail { get; set; }
 
         public string WriterPassword { get; set; }
+        public string WriterVerifyPassword { get; set; }
 
         public string WriterTitle { get; set; }
 

@@ -13,6 +13,6 @@ namespace BusinessLibrary.Abstract
         void Register(AdminDto adminDto);
         Admin Login(LoginDto loginDto);
         Writer WriterLogin(LoginDto loginDto);
-        void WriterRegister(LoginDto loginDto);
+        void WriterRegister(WriterDto writerDto);
     }
 }

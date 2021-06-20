@@ -54,14 +54,21 @@ namespace BusinessLibrary.Concrete
 
         }
 
-        public void WriterRegister(LoginDto loginDto)
+        public void WriterRegister(WriterDto writerDto)
         {
-            HashingHelper.CreatePasswordHash(loginDto.Password, out var passwordHash, out var passwordSalt);
+            HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out var passwordHash, out var passwordSalt);
             var writer = new Writer
             {
-                WriterMail = loginDto.UserName,
+                WriterName = writerDto.WriterName,
+                WriterSurName = writerDto.WriterSurName,
+                WriterImage = writerDto.WriterImage,
+                WriterAbout = writerDto.WriterAbout,
+                WriterMail = writerDto.WriterMail,
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
+                PasswordSalt = passwordSalt,
+                WriterTitle = writerDto.WriterTitle,
+                WriterStatus = true
+
             };
             _writerDal.Add(writer);
         }

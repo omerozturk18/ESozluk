@@ -75,10 +75,16 @@ namespace MvcProject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult WriterRegister(LoginDto loginDto)
+        public ActionResult WriterRegister(WriterDto writerDto)
         {
-            _authManager.WriterRegister(loginDto);
+            _authManager.WriterRegister(writerDto);
             return RedirectToAction("WriterLogin");
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings","Default");
         }
     }
 }

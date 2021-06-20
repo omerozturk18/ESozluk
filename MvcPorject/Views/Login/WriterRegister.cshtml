@@ -1,4 +1,4 @@
-﻿
+﻿@model EntityLayer.Dtos.WriterDto
 @{
     Layout = null;
 }
@@ -21,40 +21,61 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Yazar Üye Ol</h2>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-10 ">
                     <div class="login-wrap p-0">
-                        <h3 class="mb-4 text-center">Bir Hesabın Var Mı?</h3>
+                        <h3 class="mb-4 text-center"></h3>
                         @using (Html.BeginForm("WriterRegister", "Login", FormMethod.Post))
                         {
-                            <div class="form-group">
-                                <input name="UserName" id="UserName" type="text" class="form-control" placeholder="Mail Adresi" required>
-                            </div>
-                            <div class="form-group">
-                                <input name="Password" id="Password" type="password" class="form-control" placeholder="********" required>
-                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary submit px-3">Üye Ol</button>
-                            </div>
-                            <div class="form-group d-md-flex">
-                                <div class="w-50">
-                                    <label class="checkbox-wrap checkbox-primary">
-                                        Beni Hatırla
-                                        <input type="checkbox" checked>
-                                        <span class="checkmark"></span>
-                                    </label>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control", @placeholder = "İsim" })
+                                    @Html.ValidationMessageFor(x => x.WriterName)
                                 </div>
-                                <div class="w-50 text-md-right">
-                                    <a href="#" style="color: #fff">Şifremi Hatırla</a>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.WriterSurName, new { @class = "form-control", @placeholder = "Soyisim" })
+                                    @Html.ValidationMessageFor(x => x.WriterSurName)
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control", @placeholder = "Yazar Ünvanı" })
+                                    @Html.ValidationMessageFor(x => x.WriterTitle)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control", @placeholder = "Hakkınızda" })
+                                    @Html.ValidationMessageFor(x => x.WriterAbout)
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-2">
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.WriterMail, new { @type = "email", @class = "form-control", @placeholder = "Mail Adresi" })
+                                    @Html.ValidationMessageFor(x => x.WriterMail)
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.WriterPassword, new { @type = "password", @class = "form-control", @placeholder = "Şifre" })
+                                    @Html.ValidationMessageFor(x => x.WriterPassword)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.WriterVerifyPassword, new { @type = "password", @class = "form-control", @placeholder = "Şifre Tekrar" })
+                                    @Html.ValidationMessageFor(x => x.WriterVerifyPassword)
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <button class="form-control btn btn-primary submit px-3">Üye Ol</button>
+
+                                <div class="form-group d-md-flex">
+                                    <div class="w-50 text-md-right">
+                                        <a href="/Login/WriterLogin" style="color: #fff">Bir Hesabın Var Mı?</a>
+                                    </div>
                                 </div>
                             </div>
                         }
-                        <p class="w-100 text-center">&mdash; Veya Sosyal Medya İle Giriş Yapınız &mdash;</p>
+                        <p class="w-100 text-center">&mdash; Veya Sosyal Medya İle Üye Olun &mdash;</p>
                         <div class="social d-flex text-center">
                             <a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
                             <a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
