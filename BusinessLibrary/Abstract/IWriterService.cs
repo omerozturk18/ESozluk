@@ -13,10 +13,12 @@ namespace BusinessLibrary.Abstract
          List<Writer> GetAll();
         void AddWriter(WriterDto writerDto);
         void DeleteWriter(Writer writer);
-        void UpdateWriter(WriterDto writerDto);
+        void UpdateWriterDto(WriterDto writerDto);
+        void UpdateWriter(Writer writer);
          List<Writer> ListWriter(Writer writer);
         Writer GetById(int id);
         WriterDto GetByIdOfWriterDto(int id);
+        WriterDto GetByWriterDto(string writerUserName);
 
     }
 }

@@ -47,12 +47,13 @@ namespace BusinessLibrary.Concrete
             _writerDal.Delete(writer);
         }
 
-        public void UpdateWriter(WriterDto writerDto)
+        public void UpdateWriterDto(WriterDto writerDto)
         {
 
             HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out var passwordHash, out var passwordSalt);
             var writer = new Writer
             {
+                WriterId = writerDto.WriterId,
                 WriterName = writerDto.WriterName,
                 WriterSurName = writerDto.WriterSurName,
                 WriterImage = writerDto.WriterImage,
@@ -63,6 +64,10 @@ namespace BusinessLibrary.Concrete
                 PasswordSalt = passwordSalt,
                 WriterStatus = true
             };
+            _writerDal.Update(writer);
+        }
+        public void UpdateWriter(Writer writer)
+        {
             _writerDal.Update(writer);
         }
         public List<Writer> ListWriter(Writer writer)
@@ -76,22 +81,16 @@ namespace BusinessLibrary.Concrete
         }
         public WriterDto GetByIdOfWriterDto(int id)
         {
-            var writer = _writerDal.Get(c => c.WriterId == id);
-            var writerDto = new WriterDto
-            {
-                WriterName = writer.WriterName,
-                WriterSurName = writer.WriterSurName,
-                WriterImage = writer.WriterImage,
-                WriterAbout = writer.WriterAbout,
-                WriterMail = writer.WriterMail,
-                WriterTitle = writer.WriterTitle,
-                WriterStatus = writer.WriterStatus
-            };
-            return writerDto;
+            return _writerDal.GetByIdOfWriterDto(id);
         }
+
         public Writer GetByWriter(string writerUserName)
         {
             return _writerDal.Get(x => x.WriterMail == writerUserName);
+        }
+        public WriterDto GetByWriterDto(string writerUserName)
+        {
+            return _writerDal.GetWriterDto(writerUserName);
         }
     }
 }

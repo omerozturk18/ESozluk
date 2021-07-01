@@ -64,7 +64,7 @@ namespace MvcProject.Controllers
             ValidationResult result = validator.Validate(writerDto);
             if (result.IsValid)
             {
-                _writerManager.UpdateWriter(writerDto);
+                _writerManager.UpdateWriterDto(writerDto);
                 return RedirectToAction("Index");
             }
             else

@@ -7,7 +7,9 @@ using BusinessLibrary.Concrete;
 using BusinessLibrary.ValidationRules;
 using DataAccessLibrary.Concrete.EntityFramework;
 using EntityLayer.Concrete;
+using EntityLayer.Dtos;
 using FluentValidation.Results;
+using PagedList;
 
 namespace MvcProject.Controllers
 {
@@ -19,6 +21,27 @@ namespace MvcProject.Controllers
 
         public ActionResult WriterProfile()
         {
+            var writer = _writerManager.GetByWriterDto((string)Session["WriterUserName"]);
+            return View(writer);
+        }
+
+        [HttpPost]
+        public ActionResult WriterProfile(WriterDto writerDto)
+        {
+            WriterValidator validator = new WriterValidator();
+            ValidationResult result = validator.Validate(writerDto);
+            if (result.IsValid)
+            {
+                _writerManager.UpdateWriterDto(writerDto);
+                return RedirectToAction("MyHeading");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
         }
         public ActionResult MyHeading()
@@ -75,9 +98,11 @@ namespace MvcProject.Controllers
             _headingManager.DeleteHeading(headingDelete);
             return RedirectToAction("WriterProfile");
         }
-        public ActionResult AllHeading()
+        public ActionResult AllHeading(int page=1)
         {
-            return View(_headingManager.GetAll());
+            var list=_headingManager.GetAll().ToPagedList(page, 10);
+
+            return View(list);
         }
         private void GetCategorizes()
         {
