@@ -48,5 +48,10 @@ namespace BusinessLibrary.Concrete
         {
             return _contentDal.Get(c => c.ContentId == id);
         }
+
+        public List<Content> Filter(string filter)
+        {
+            return   _contentDal.List(x => x.ContentValue.Contains(filter));
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace BusinessLibrary.Abstract
          List<Content> ListByHeadingId(int id);
          List<Content> ListByContentOfWriterId(int id);
          Content GetById(int id);
+         List<Content> Filter(string filter);
 
     }
 }
