@@ -12,10 +12,7 @@ namespace MvcProject.Controllers
     public class ContentController : Controller
     {
         private readonly ContentManager _contentManager = new ContentManager(new EfContentDal());
-        public ActionResult Index()
-        {
-            return View();
-        }
+
         public ActionResult GetAllContent(string filter)
         {
             if (!string.IsNullOrEmpty(filter))

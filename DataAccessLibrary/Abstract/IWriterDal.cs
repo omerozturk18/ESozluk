@@ -10,7 +10,6 @@ namespace DataAccessLibrary.Abstract
 {
     public interface IWriterDal:IRepository<Writer>
     {
-        int WriterFilterCount();
         WriterDto GetWriterDto(string userName);
         WriterDto GetByIdOfWriterDto(int id);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityLayer.Concrete;
 
 namespace BusinessLibrary.Abstract
 {
@@ -11,7 +12,7 @@ namespace BusinessLibrary.Abstract
         int NumberOfCategory();
         int NumberOfHeaderInCategory(int id);
         int WriterFilterCount(); 
-        int CategoryWithTheMostHeader();
+        Category CategoryWithTheMostHeader();
         int TrueOrFalseDifferenceOfCategory();
 
 

@@ -9,8 +9,5 @@ namespace DataAccessLibrary.Abstract
 {
     public interface IHeadingDal:IRepository<Heading>
     {
-        int NumberOfHeaderInCategory(int id);
-        int CategoryWithTheMostHeader();
-
     }
 }

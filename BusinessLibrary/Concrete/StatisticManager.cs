@@ -5,45 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLibrary.Abstract;
 using DataAccessLibrary.Abstract;
+using EntityLayer.Concrete;
+using MvcPorject.Models;
 
 namespace BusinessLibrary.Concrete
 {
     public class StatisticManager: IStatisticService
     {
-        private readonly ICategoryDal _categoryDal;
-        private readonly IHeadingDal _headingDal;
-        private readonly IWriterDal _writerDal;
+        private readonly IStatisticDal _statisticDal;
 
-        public StatisticManager(IWriterDal writerDal, IHeadingDal headingDal, ICategoryDal categoryDal)
+        public StatisticManager(IStatisticDal statisticDal)
         {
-            _writerDal = writerDal;
-            _headingDal = headingDal;
-            _categoryDal = categoryDal;
+            _statisticDal = statisticDal;
         }
 
         public int NumberOfCategory()
         {
-            return _categoryDal.NumberOfCategory();
+            return _statisticDal.NumberOfCategory();
         }
 
         public int NumberOfHeaderInCategory(int id)
         {
-            return _headingDal.NumberOfHeaderInCategory(id);
+            return _statisticDal.NumberOfHeaderInCategory(id);
         }
 
         public int WriterFilterCount()
         {
-            return _writerDal.WriterFilterCount();
+            return _statisticDal.WriterFilterCount();
         }
 
-        public int CategoryWithTheMostHeader()
+        public Category CategoryWithTheMostHeader()
         {
-            return _headingDal.CategoryWithTheMostHeader();
+            return _statisticDal.CategoryWithTheMostHeader();
         }
 
         public int TrueOrFalseDifferenceOfCategory()
         {
-            return _categoryDal.TrueOrFalseDifferenceOfCategory();
+            return _statisticDal.TrueOrFalseDifferenceOfCategory();
+        }
+        public List<CategoryChart> CategoryChart()
+        {
+            return _statisticDal.CategoryCharts();
+        }
+        public List<ContentChart> ContentChart()
+        {
+            return _statisticDal.ContentChart();
         }
     }
 }

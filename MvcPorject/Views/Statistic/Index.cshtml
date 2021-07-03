@@ -56,14 +56,14 @@
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>@ViewBag.categoryWithTheMostHeader</h3>
+                <h3>@ViewBag.categoryWithTheMostHeader.CategoryName</h3>
 
                 <p>En Çok Başlığa Sahip Kategori</p>
             </div>
             <div class="icon">
                 <i class="fas fa-chart-pie"></i>
             </div>
-            <a href="/Heading/GetByCategory/@ViewBag.categoryId" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/Heading/GetByCategory/@ViewBag.categoryWithTheMostHeader.CategoryId" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
