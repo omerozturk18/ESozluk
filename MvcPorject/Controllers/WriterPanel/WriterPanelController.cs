@@ -106,7 +106,7 @@ namespace MvcProject.Controllers
         }
         private void GetCategorizes()
         {
-            List<SelectListItem> categorizes = (from x in _categoryManager.GetAll()
+            List<SelectListItem> categorizes = (from x in _categoryManager.GetAllActive()
                 select new SelectListItem
                 {
                     Text = x.CategoryName,

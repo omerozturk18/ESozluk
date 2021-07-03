@@ -130,6 +130,10 @@
     <Compile Include="Migrations\202106191707486__migWriterSta.designer.cs">
       <DependentUpon>202106191707486__migWriterSta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107031932537_addAminStatus.cs" />
+    <Compile Include="Migrations\202107031932537_addAminStatus.designer.cs">
+      <DependentUpon>202107031932537_addAminStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106191707486__migWriterSta.resx">
       <DependentUpon>202106191707486__migWriterSta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107031932537_addAminStatus.resx">
+      <DependentUpon>202107031932537_addAminStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

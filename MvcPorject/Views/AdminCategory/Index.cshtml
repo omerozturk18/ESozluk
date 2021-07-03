@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@{
+    string status = "";
+    string statusColor = "";
 
+}
 <br />
 <h3>Kategoriler</h3>
 <br />
@@ -12,20 +16,52 @@
     <tr>
         <th>#</th>
         <th>Kategori Adı</th>
+        <th>Durum</th>
         <th>Sil</th>
         <th>Güncelle</th>
         <th>Başlıklar</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <th>@item.CategoryId</th>
-            <td>@item.CategoryName</td>
-            <td><a href="/AdminCategory/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-            <td><a href="/AdminCategory/UpdateCategory/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
-            <td><a href="/Heading/GetByCategory/@item.CategoryId" class="btn btn-primary">Başlıklar</a></td>
+        {
+            switch (item.CategoryStatus)
+            {
+                case true:
+                    status="Aktif";
+                    statusColor="badge badge-success";
+                    break;
+                case false:
+                    status = "Pasif";
+                    statusColor = "badge badge-danger";
+                    break;
+            }
+        }
+<tr>
+    <th>@item.CategoryId</th>
+    <td>@item.CategoryName</td>
+    <td><span class="@statusColor"> @status</span></td>
+    @if (item.CategoryStatus)
+    {
+        <td><button class="btn btn-danger btn-sm" onclick="deleteFunction('DeleteCategory/@item.CategoryId')"><i class="fas fa-trash"></i> Sil</button></td>
+    }
+    else
+    {
+        <td><button class="btn btn-danger btn-sm" disabled><i class="fas fa-trash"></i> Sil</button></td>
+    }
+    <td>
+        <a href="/AdminCategory/UpdateCategory/@item.CategoryId" class="btn btn-success">
+            <i class="fas fa-pencil-alt">
+            </i> Güncelle
+        </a>
+    </td>
+    <td>
+        <a href="/Heading/GetByCategory/@item.CategoryId" class="btn btn-primary">
+            <i class="fas fa-folder">
+            </i> Başlıklar
+        </a>
+    </td>
 
-        </tr>
+</tr>
     }
 </table>
 <a href="/AdminCategory/AddCategory" class="btn btn-info">Yeni Kategori Ekle</a>

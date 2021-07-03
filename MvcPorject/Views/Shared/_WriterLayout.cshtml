@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -137,7 +139,6 @@ to get the desired effect
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
@@ -145,6 +146,29 @@ to get the desired effect
     <!-- OPTIONAL SCRIPTS -->
     <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
-    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+<script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+<script>
+    function deleteFunction(url) {
+        swal({
+            title: "Silmek İseğinizden Emin Misiniz?",
+            text: "Bir kez silindiğinde, bu veriyi kurtaramayacaksınız!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                window.location.href = url;
+                swal("Puf! veri silindi!", {
+                    icon: "success",
+                });
+            } else {
+                swal({
+                    title: "Veri Silme İşlemi İptal Edildi!!",
+                    icon: "error",
+                });
+            }
+        });
+    }
+</script>
 </body>
 </html>

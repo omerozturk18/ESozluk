@@ -15,7 +15,8 @@ namespace MvcPorject.Controllers
         private  readonly  ContentManager _contentManager=new ContentManager(new EfContentDal());
         public ActionResult Headings()
         {
-            return View(_headingManager.GetAll());
+            var headings = _headingManager.GetAll().Where(x => x.HeadingStatus == true);
+            return View(headings.ToList());
         }
 
         public PartialViewResult Index(int id=0)

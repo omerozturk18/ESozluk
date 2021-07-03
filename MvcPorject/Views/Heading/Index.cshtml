@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @{
-    string color = "";
     string status = "";
     string statusColor = "";
 }
@@ -24,133 +23,118 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    <section class="content">
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Başlıklar</h3>
-                <div class="card-tools">
-                    <a href="/Heading/AddHeading" class="btn btn-info">Yeni Başlık Ekle</a>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Başlıklar</h3>
+            <div class="card-tools">
+                <a href="/Heading/AddHeading" class="btn btn-info">Yeni Başlık Ekle</a>
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div class="card-body p-0">
-                <table class="table table-striped projects">
-                    <thead>
-                        <tr>
-                            <th style="width: 1%">
-                                #
-                            </th>
-                            <th style="width: 20%">
-                                Başlık Adı
-                            </th>
-                            <th style="width: 15%">
-                                Oluşturan Yazar
-                            </th>
-                            <th style="width: 10%">
-                                Durum
-                            </th>
-                            <th style="width: 8%" class="text-center">
-                                Kategori
-                            </th>
-                            <th style="width: 20%">
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            if (item.Category.CategoryName == "Tiyatro")
-                            {
-                                color = "badge badge-waring";
-                            }
-                            if (item.Category.CategoryName == "Eğitim")
-                            {
-                                color = "badge badge-success";
-                            }
-                            if (item.Category.CategoryName == "Film")
-                            {
-                                color = "badge badge-danger";
-                            }
-                            if (item.Category.CategoryName == "Fotoğraf")
-                            {
-                                color = "badge badge-secondary";
-                            }
-                            if (item.Category.CategoryName == "Teknoloji")
-                            {
-                                color = "badge badge-primary";
-
-                            }
-                            switch (item.HeadingStatus)
-                            {
-                                case true:
-                                    status="Aktif";
-                                    statusColor="badge badge-success";
-                                    break;
-                                case false:
-                                    status = "Pasif";
-                                    statusColor = "badge badge-danger";
-                                    break;
-                            }
-                        <tr>
-                            <td>
-                                #
-                            </td>
-                            <td>
-                                <a>
-                                    @item.HeadingName
-                                </a>
-                                <br />
-                                <small>
-                                    @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
-                                </small>
-                            </td>
-                            <td>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
-                                        @item.Writer.WriterName @item.Writer.WriterSurName
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <span class="@statusColor"> @status</span>
-                            </td>
-                            <td class="project-state">
-                                <span class="@color">@item.Category.CategoryName</span>
-                            </td>
-                            <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    Yazılar
-                                </a>
-                                <a class="btn btn-info btn-sm" href="/Heading/UpdateHeading/@item.HeadingId">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Düzenle
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingId">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Sil
-                                </a>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
-    </section>
+        <div class="card-body p-0">
+            <table class="table table-striped projects">
+                <thead>
+                <tr>
+                    <th style="width: 1%">
+                        #
+                    </th>
+                    <th style="width: 20%">
+                        Başlık Adı
+                    </th>
+                    <th style="width: 15%">
+                        Oluşturan Yazar
+                    </th>
+                    <th style="width: 10%">
+                        Durum
+                    </th>
+                    <th style="width: 8%" class="text-center">
+                        Kategori
+                    </th>
+                    <th style="width: 20%">
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    switch (item.HeadingStatus)
+                    {
+                        case true:
+                            status="Aktif";
+                            statusColor="badge badge-success";
+                            break;
+                        case false:
+                            status = "Pasif";
+                            statusColor = "badge badge-danger";
+                            break;
+                    }
+                    <tr>
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            <a>
+                                @item.HeadingName
+                            </a>
+                            <br />
+                            <small>
+                                @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                            </small>
+                        </td>
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
+                                    @item.Writer.WriterName @item.Writer.WriterSurName
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="@statusColor"> @status</span>
+                        </td>
+                        <td class="project-state">
+                            <span class="badge badge-waring">@item.Category.CategoryName</span>
+                        </td>
+                        <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
+                                <i class="fas fa-folder">
+                                </i>
+                                Yazılar
+                            </a>
+                            <a class="btn btn-info btn-sm" href="/Heading/UpdateHeading/@item.HeadingId">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Düzenle
+                            </a>
+                            @if(item.HeadingStatus){
+                            <button class="btn btn-danger btn-sm" onclick="deleteFunction('DeleteHeading/@item.HeadingId')">
+                                <i class="fas fa-trash"></i> Sil
+                            </button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-danger btn-sm" disabled="">
+                                    <i class="fas fa-trash"></i> Sil
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
 </body>
 </html>
 

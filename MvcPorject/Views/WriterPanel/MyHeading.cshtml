@@ -6,7 +6,6 @@
 }
 
 @{
-    string color = "";
     string status = "";
 }
 <!DOCTYPE html>
@@ -62,27 +61,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            if (item.Category.CategoryName == "Tiyatro")
-                            {
-                                color = "badge badge-waring";
-                            }
-                            if (item.Category.CategoryName == "Eğitim")
-                            {
-                                color = "badge badge-success";
-                            }
-                            if (item.Category.CategoryName == "Film")
-                            {
-                                color = "badge badge-danger";
-                            }
-                            if (item.Category.CategoryName == "Fotoğraf")
-                            {
-                                color = "badge badge-secondary";
-                            }
-                            if (item.Category.CategoryName == "Teknoloji")
-                            {
-                                color = "badge badge-primary";
 
-                            }
                             <tr>
                                 <td>
                                     #
@@ -105,7 +84,7 @@
                                     </ul>
                                 </td>
                                 <td class="project-state">
-                                    <span class="@color">@item.Category.CategoryName</span>
+                                    <span class="badge badge-waring">@item.Category.CategoryName</span>
                                 </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
@@ -118,11 +97,10 @@
                                         </i>
                                         Düzenle
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/WriterPanel/DeleteHeading/@item.HeadingId">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Sil
-                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteFunction('DeleteHeading/@item.HeadingId')">
+                                        <i class="fas fa-trash"></i> Sil
+                                        </button>
+
                                 </td>
                             </tr>
                         }

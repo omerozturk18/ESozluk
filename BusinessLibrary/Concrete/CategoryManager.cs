@@ -2,6 +2,7 @@
 using DataAccessLibrary.Abstract;
 using EntityLayer.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 using DataAccessLibrary.Concrete.EntityFramework;
 
 namespace BusinessLibrary.Concrete
@@ -20,6 +21,10 @@ namespace BusinessLibrary.Concrete
         {
             return _categoryDal.GetAll();
         }
+        public List<Category> GetAllActive()
+        {
+            return _categoryDal.GetAll().Where(x=>x.CategoryStatus==true).ToList();
+        }
         public void AddCategory(Category category)
         {
 
@@ -27,7 +32,8 @@ namespace BusinessLibrary.Concrete
         }
         public void DeleteCategory(Category category)
         {
-            _categoryDal.Delete(category);
+            category.CategoryStatus = false;
+            _categoryDal.Update(category);
         }
 
         public void UpdateCategory(Category category)

@@ -10,6 +10,7 @@ namespace BusinessLibrary.Abstract
     public interface ICategoryService
     {
         List<Category> GetAll();
+        List<Category> GetAllActive();
         void AddCategory(Category category);
         void DeleteCategory(Category category);
         void UpdateCategory(Category category);

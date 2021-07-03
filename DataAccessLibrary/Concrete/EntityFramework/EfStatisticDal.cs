@@ -93,15 +93,18 @@ namespace DataAccessLibrary.Concrete.EntityFramework
         {
             using (Context context = new Context())
             {
-
-                var result2 = context.Contents.GroupBy(x => new { x.WriterId, x.Heading })
-                    .Select(g => new {Writer= g.Key.WriterId, Heading=g.Key.Heading, MyCount = g.Count() }).ToList();
-                var result = result2.GroupBy(c => new {c.Heading.HeadingId,c.MyCount})
-                    .Select(s => new ContentChart()
+                var writer = context.Contents.GroupBy(x => x.Writer)
+                    .Select(s => new
                     {
-                        HeadingName = s.Where(x=>x.Heading.HeadingId==s.Key.HeadingId).First().Heading.HeadingName,
+                        Id = s.Key.WriterId,
+                        WriterCount = s.Count()
+                    });
+                var result = context.Contents.GroupBy(x => x.Heading)
+                    .Select(s =>  new ContentChart()
+                    {
+                        HeadingName = s.Key.HeadingName,
                         ContentCount = s.Count(),
-                        WriterCount = s.Key.MyCount
+                        WriterCount = s.GroupBy(x=>x.Writer).Count()
                     });
                 return result.ToList();
 

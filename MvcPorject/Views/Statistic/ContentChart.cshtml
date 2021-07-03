@@ -13,6 +13,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
+
         $(document).ready(function () {
             $.ajax({
                 type: "POST",
@@ -43,10 +44,13 @@
             data.addRows(dataArray);
 
             var columnChartOptions = {
-                title: "Başlık  Grafiği",
+                title: "Başlık Başına Yazı ve Yazar Sayısı",
                 width: 1000,
                 height: 800,
                 bar: { groupWidth: "20%" },
+                curveType: 'function',
+                legend: { position: 'top' },
+                hAxis: {title: 'Başlıklar'}
             };
 
             var columnChart = new google.visualization.AreaChart(document

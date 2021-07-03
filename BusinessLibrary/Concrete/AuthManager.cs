@@ -31,7 +31,8 @@ namespace BusinessLibrary.Concrete
                 AdminUserName =adminDto.AdminUserName,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                AdminRole = "c"
+                AdminRole = "C",
+                AdminStatus = true
             };
             _adminDal.Add(admin);
         }

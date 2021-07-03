@@ -31,7 +31,7 @@ namespace MvcProject.Controllers
 
         public ActionResult GetCategoryList()
         {
-            return View(_categoryManager.GetAll());
+            return View(_categoryManager.GetAllActive());
         }
 
         [HttpGet]

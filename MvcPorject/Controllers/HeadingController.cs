@@ -25,6 +25,12 @@ namespace MvcProject.Controllers
         {
             return View(_headingManager.GetByWriter(id));
         }
+        public ActionResult HeadingReport()
+        {
+            return View(_headingManager.GetAll());
+        }
+
+
         public ActionResult GetByCategory(int id)
         {
             ViewBag.categoryHeader = _categoryManager.GetById(id).CategoryName;
@@ -86,7 +92,7 @@ namespace MvcProject.Controllers
 
         private void GetCategorizes()
         {
-            List<SelectListItem> categorizes = (from x in _categoryManager.GetAll()
+            List<SelectListItem> categorizes = (from x in _categoryManager.GetAllActive()
                     select  new SelectListItem
                     {
                         Text = x.CategoryName,
