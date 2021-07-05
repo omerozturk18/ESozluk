@@ -29,7 +29,7 @@ namespace MvcProject.Controllers
             {
                 FormsAuthentication.SetAuthCookie(admin.AdminUserName,false);
                 Session["AdminUserName"] = admin.AdminUserName;
-                return RedirectToAction("Index", "AdminCategory");
+                return RedirectToAction("Index", "Heading");
             }
             else
             {
@@ -37,17 +37,7 @@ namespace MvcProject.Controllers
                 return View();
             }
         }
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Register(AdminDto adminDto)
-        {
-            _authManager.Register(adminDto);
-            return RedirectToAction("Index");
-        }
+
         [HttpGet]
         public ActionResult WriterLogin()
         {

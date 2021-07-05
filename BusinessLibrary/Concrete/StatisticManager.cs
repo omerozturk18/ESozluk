@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLibrary.Abstract;
 using DataAccessLibrary.Abstract;
+using EntityLayer.ChartEntity;
 using EntityLayer.Concrete;
 using MvcPorject.Models;
 
@@ -43,6 +44,12 @@ namespace BusinessLibrary.Concrete
         {
             return _statisticDal.TrueOrFalseDifferenceOfCategory();
         }
+
+        public DashboardStatistic DashboardStatistic()
+        {
+            return _statisticDal.DashboardStatistic();
+        }
+
         public List<CategoryChart> CategoryChart()
         {
             return _statisticDal.CategoryCharts();

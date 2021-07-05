@@ -10,7 +10,6 @@ namespace BusinessLibrary.Abstract
 {
    public interface IAuthService
     {
-        void Register(AdminDto adminDto);
         Admin Login(LoginDto loginDto);
         Writer WriterLogin(LoginDto loginDto);
         void WriterRegister(WriterDto writerDto);

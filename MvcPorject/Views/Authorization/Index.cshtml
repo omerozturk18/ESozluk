@@ -39,7 +39,8 @@
             <td>@item.AdminUserName</td>
             <td>@item.AdminRole</td>
             <td><span class="@statusColor"> @status</span></td>
-            <td><a href="/Authorization/DeleteAdmin/@item.AdminId" class="btn badge-danger">Pasif Yap</a></td>
+            @if(item.AdminStatus){<td><a href="/Authorization/DeleteAdmin/@item.AdminId" class="btn badge-danger">Pasif Yap</a></td>}
+            else {<td><a href="/Authorization/DeleteAdmin/@item.AdminId" class="btn badge-success">Aktif Yap</a></td>}
             <td><a href="/Authorization/EditAdmin/@item.AdminId" class="btn badge-success">Yetkisini Değiştir</a></td>
         </tr>
 

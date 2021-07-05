@@ -22,21 +22,6 @@ namespace BusinessLibrary.Concrete
             _writerDal = writerDal;
         }
 
-
-        public void Register(AdminDto adminDto)
-        {
-            HashingHelper.CreatePasswordHash(adminDto.AdminPassword, out var passwordHash, out var passwordSalt);
-            var admin = new Admin
-            {
-                AdminUserName =adminDto.AdminUserName,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                AdminRole = "C",
-                AdminStatus = true
-            };
-            _adminDal.Add(admin);
-        }
-
         public Admin Login(LoginDto loginDto)
         {
             var userToCheck = _adminDal.Get(x=>x.AdminUserName==loginDto.UserName);

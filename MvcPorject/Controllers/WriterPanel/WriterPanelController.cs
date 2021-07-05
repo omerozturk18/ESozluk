@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using BusinessLibrary.Concrete;
@@ -21,18 +22,18 @@ namespace MvcProject.Controllers
 
         public ActionResult WriterProfile()
         {
-            var writer = _writerManager.GetByWriterDto((string)Session["WriterUserName"]);
+            var writer = _writerManager.GetByWriter((string)Session["WriterUserName"]);
             return View(writer);
         }
 
         [HttpPost]
-        public ActionResult WriterProfile(WriterDto writerDto)
+        public ActionResult WriterProfile(Writer writer)
         {
             WriterValidator validator = new WriterValidator();
-            ValidationResult result = validator.Validate(writerDto);
+            ValidationResult result = validator.Validate(writer);
             if (result.IsValid)
             {
-                _writerManager.UpdateWriterDto(writerDto);
+                _writerManager.UpdateWriter(writer);
                 return RedirectToAction("MyHeading");
             }
             else

@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace DataAccessLibrary.Concrete.EntityFramework
 {
-    public class EfStatisticDal : GenericRepository<Statistic, Context>, IStatisticDal
+    public class EfStatisticDal : GenericRepository<DashboardStatistic, Context>, IStatisticDal
     {
         public int NumberOfCategory()
         {
@@ -93,12 +93,6 @@ namespace DataAccessLibrary.Concrete.EntityFramework
         {
             using (Context context = new Context())
             {
-                var writer = context.Contents.GroupBy(x => x.Writer)
-                    .Select(s => new
-                    {
-                        Id = s.Key.WriterId,
-                        WriterCount = s.Count()
-                    });
                 var result = context.Contents.GroupBy(x => x.Heading)
                     .Select(s =>  new ContentChart()
                     {
@@ -108,6 +102,25 @@ namespace DataAccessLibrary.Concrete.EntityFramework
                     });
                 return result.ToList();
 
+            }
+        }
+
+        public DashboardStatistic DashboardStatistic()
+        {
+            using (Context context = new Context())
+            {
+                var headingCount = context.Headings.Count();
+                var entryCount = context.Contents.Count();
+                var writerCount = context.Writers.Count();
+                var messagesCount= context.Messages.Count();
+                DashboardStatistic statistic =new DashboardStatistic 
+                {
+                    HeadingCount = headingCount,
+                    EntryCount = entryCount,
+                    WriterCount= writerCount,
+                    MessagesCount= messagesCount
+                };
+                return statistic;
             }
         }
     }

@@ -27,6 +27,7 @@ namespace BusinessLibrary.Concrete
         }
         public void AddWriter(WriterDto writerDto)
         {
+            _ = writerDto == null ? writerDto.WriterImage = "/AdminLTE-3.0.4/dist/img/admin.jpg" : "";
             HashingHelper.CreatePasswordHash(writerDto.WriterPassword, out var passwordHash, out var passwordSalt);
             var writer = new Writer
             {
@@ -68,6 +69,9 @@ namespace BusinessLibrary.Concrete
         }
         public void UpdateWriter(Writer writer)
         {
+            var v = GetById(writer.WriterId);
+            writer.PasswordHash = v.PasswordHash;
+            writer.PasswordSalt = v.PasswordSalt;
             _writerDal.Update(writer);
         }
         public List<Writer> ListWriter(Writer writer)

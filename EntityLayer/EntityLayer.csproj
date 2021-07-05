@@ -74,7 +74,7 @@
   <ItemGroup>
     <Compile Include="ChartEntity\ContentChart.cs" />
     <Compile Include="ChartEntity\CategoryChart.cs" />
-    <Compile Include="ChartEntity\Statistic.cs" />
+    <Compile Include="ChartEntity\DashboardStatistic.cs" />
     <Compile Include="Concrete\About.cs" />
     <Compile Include="Concrete\Admin.cs" />
     <Compile Include="Concrete\Category.cs" />

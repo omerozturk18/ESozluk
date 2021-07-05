@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Dtos.WriterDto
+﻿@model EntityLayer.Concrete.Writer
 @{
     ViewBag.Title = "WriterProfile";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -11,9 +11,7 @@
 <div class="form-group">
 
     @Html.HiddenFor(x => x.WriterId)
-    @Html.HiddenFor(x => x.WriterPassword, new { @class = "form-control" })
-    @Html.HiddenFor(x => x.WriterVerifyPassword, new { @class = "form-control" })
-    @Html.HiddenFor(x => x.WriterStatus, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.WriterStatus)
 
     @Html.Label("Yazar Adı")
     @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })

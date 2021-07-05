@@ -12,7 +12,7 @@ namespace BusinessLibrary.Abstract
     {
         Admin GetByAdmin(string adminUserName);
         List<Admin> GetAll();
-        void AddAdmin(Admin admin);
+        void AddAdmin(AdminDto adminDto);
         void DeleteAdmin(Admin admin);
         void UpdateAdmin(Admin admin);
         List<Admin> ListAdmin(Admin admin);

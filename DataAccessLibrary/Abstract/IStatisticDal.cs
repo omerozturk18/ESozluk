@@ -9,7 +9,7 @@ using MvcPorject.Models;
 
 namespace DataAccessLibrary.Abstract
 {
-    public interface IStatisticDal:IRepository<Statistic>
+    public interface IStatisticDal:IRepository<DashboardStatistic>
     {
         int NumberOfCategory();
         int TrueOrFalseDifferenceOfCategory();
@@ -18,6 +18,8 @@ namespace DataAccessLibrary.Abstract
         List<CategoryChart> CategoryCharts();
         int WriterFilterCount();
         List<ContentChart> ContentChart();
+
+        DashboardStatistic DashboardStatistic();
 
     }
 }

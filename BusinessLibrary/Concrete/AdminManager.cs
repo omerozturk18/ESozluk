@@ -28,13 +28,23 @@ namespace BusinessLibrary.Concrete
         {
             return _adminDal.Get(x => x.AdminId == id);
         }
+
         public List<Admin> GetAll()
         {
             return _adminDal.GetAll();
         }
 
-        public void AddAdmin(Admin admin)
+        public void AddAdmin(AdminDto adminDto)
         {
+            HashingHelper.CreatePasswordHash(adminDto.AdminPassword, out var passwordHash, out var passwordSalt);
+            var admin = new Admin
+            {
+                AdminUserName = adminDto.AdminUserName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                AdminRole = "C",
+                AdminStatus = true
+            };
             _adminDal.Add(admin);
         }
 
@@ -45,6 +55,9 @@ namespace BusinessLibrary.Concrete
 
         public void UpdateAdmin(Admin admin)
         {
+            var a = GetByAdminId(admin.AdminId);
+            admin.PasswordHash = a.PasswordHash;
+            admin.PasswordSalt = a.PasswordSalt;
             _adminDal.Update(admin);
         }
 

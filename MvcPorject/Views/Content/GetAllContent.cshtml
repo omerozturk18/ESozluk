@@ -13,11 +13,19 @@
 <div class="wrapper">
     <section class="content">
         <div class="container-fluid">
-            <div class="col-6">
+            <div class="col-12">
                 @using (Html.BeginForm("GetAllContent", "Content", FormMethod.Post))
                 {
                     <p>
-                        Aranacak Kelimeyi Giriniz: @Html.TextBox("filter", "", "", new { @class = "form-control" }) <input class="btn btn-primary" type="submit" value="Ara" />
+                        <div class="row">
+                            <div class="col-3">Aranacak Kelimeyi Giriniz:</div>
+                            <div class="col-6">
+                                <input type="text" name="filter" class="form-control"/>
+                            </div>
+                            <div class="col-3">
+                                <input class="btn btn-primary" type="submit" value="Ara"/>
+                            </div>
+                        </div>
                     </p>
                 }</div>
                 <br />

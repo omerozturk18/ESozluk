@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace EntityLayer.Concrete
+namespace EntityLayer.Dtos
 {
     public class AdminDto
     {
+        public int AdminId { get; set; }
         public string AdminUserName { get; set; }
         public string AdminPassword { get; set; }
 

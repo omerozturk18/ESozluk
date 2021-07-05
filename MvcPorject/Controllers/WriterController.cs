@@ -15,6 +15,7 @@ namespace MvcProject.Controllers
     public class WriterController : Controller
     {
         private readonly WriterManager _writerManager = new WriterManager(new EfWriterDal());
+
         public ActionResult Index()
         {
             return View(_writerManager.GetAll());
@@ -28,7 +29,7 @@ namespace MvcProject.Controllers
         [HttpPost]
         public ActionResult AddWriter(WriterDto writerDto)
         {
-            WriterValidator validator = new WriterValidator();
+            WriterDtoValidator validator = new WriterDtoValidator();
             ValidationResult result = validator.Validate(writerDto);
             if (result.IsValid)
             {
@@ -54,17 +55,18 @@ namespace MvcProject.Controllers
         [HttpGet]
         public ActionResult UpdateWriter(int id)
         {
-            var writerValue = _writerManager.GetByIdOfWriterDto(id);
-            return View(writerValue);
+            var writer = _writerManager.GetById(id);
+            return View(writer);
         }
         [HttpPost]
-        public ActionResult UpdateWriter(WriterDto writerDto)
+        public ActionResult UpdateWriter(Writer writer)
         {
-            WriterValidator validator = new WriterValidator();
-            ValidationResult result = validator.Validate(writerDto);
+         WriterValidator validator = new WriterValidator();
+        ValidationResult result = validator.Validate(writer);
             if (result.IsValid)
             {
-                _writerManager.UpdateWriterDto(writerDto);
+
+                _writerManager.UpdateWriter(writer);
                 return RedirectToAction("Index");
             }
             else
